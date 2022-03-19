@@ -1,4 +1,6 @@
-package tree.binary.traversal;
+package tree.binary.basics;
+
+import tree.binary.MyTreeNode;
 
 class CountOfNodes {
 	public static void main(String[] args) {
