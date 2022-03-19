@@ -9,17 +9,14 @@ class SwapNodesInPairs {
         if(head == null || head.next == null)
             return head;
 
-        ListNode p1;
-        p1 = head;
-
         ListNode p2 = head.next;
         ListNode p3 = p2.next;
 
-        p1.next = p3;
-        p2.next = p1;
+        head.next = p3;
+        p2.next = head;
 
         if(p3 != null)
-            p1.next = swapPairs(p3);
+            head.next = swapPairs(p3);
 
         return p2;
     }

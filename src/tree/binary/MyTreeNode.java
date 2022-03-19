@@ -1,8 +1,9 @@
 package tree.binary;
 
 public class MyTreeNode {
-    int val;
-    MyTreeNode left, right;
+    public int val;
+    public MyTreeNode left;
+    public MyTreeNode right;
 
     public MyTreeNode() {
         this.val = -1;
