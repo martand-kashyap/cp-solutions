@@ -4,7 +4,7 @@ import java.io.PrintWriter;
 import java.util.Arrays;
 
 class SubsetSum {
-    private boolean subsetExistsWithSumR(int[] items, int targetSum, int n) {
+    boolean subsetExistsWithSumR(int[] items, int targetSum, int n) {
         return solveR(items, targetSum, n);
     }
 
@@ -22,7 +22,7 @@ class SubsetSum {
             return solveR(items, targetSum, n - 1);
     }
 
-    private boolean subsetExistsWithSumM(int[] items, int targetSum, int n) {
+    boolean subsetExistsWithSumM(int[] items, int targetSum, int n) {
         boolean[][] dp = new boolean[n + 1][targetSum + 1];
         for (boolean[] row : dp)
             Arrays.fill(row, false);
@@ -48,7 +48,7 @@ class SubsetSum {
             return dp[n][targetSum] = solveM(items, targetSum, n - 1, dp);
     }
 
-    private boolean subsetExistsWithSumT(int[] items, int targetSum, int n) {
+    boolean subsetExistsWithSumT(int[] items, int targetSum, int n) {
         boolean[][] dp = new boolean[n + 1][targetSum + 1];
 
         for (int item = 0; item <= n; item++)
