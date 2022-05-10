@@ -3,7 +3,7 @@ package dp.pattern.knapsack.zeroone;
 import java.io.PrintWriter;
 import java.util.Arrays;
 
-class KnapsackZeroOne {
+class Knapsack01{
     private int maximizeProfitR(int[] weights, int[] profits, int n, int knapsackCapacity) {
         return solveR(weights, profits, n, knapsackCapacity);
     }
@@ -67,7 +67,7 @@ class KnapsackZeroOne {
         int knapsackCapacity = 5;
         int n = weights.length;
 
-        KnapsackZeroOne k01 = new KnapsackZeroOne();
+        Knapsack01 k01 = new Knapsack01();
 
         String sb = "Recursive : " + k01.maximizeProfitR(weights, profits, n, knapsackCapacity) + "\n"
                 + "Memoized (Top-Down) : " + k01.maximizeProfitM(weights, profits, n, knapsackCapacity) + "\n"
