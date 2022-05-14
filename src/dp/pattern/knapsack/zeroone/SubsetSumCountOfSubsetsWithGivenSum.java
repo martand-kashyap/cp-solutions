@@ -4,7 +4,7 @@ import java.io.PrintWriter;
 import java.util.Arrays;
 
 class SubsetSumCountOfSubsetsWithGivenSum {
-    private int countSubsetsWithSumR(int[] items, int targetSum, int n) {
+    int countSubsetsWithSumR(int[] items, int targetSum, int n) {
         return solveR(items, targetSum, n);
     }
 
@@ -23,7 +23,7 @@ class SubsetSumCountOfSubsetsWithGivenSum {
                     + solveR(items, targetSum, n - 1); // choice 2 : do not take the current item
     }
 
-    private int countSubsetsWithSumM(int[] items, int targetSum, int n) {
+    int countSubsetsWithSumM(int[] items, int targetSum, int n) {
         int[][] dp = new int[n + 1][targetSum + 1];
         for (int[] row : dp)
             Arrays.fill(row, -1);
@@ -51,7 +51,7 @@ class SubsetSumCountOfSubsetsWithGivenSum {
                             + solveM(items, targetSum, n - 1, dp); // choice 2 : do not take the current item
     }
 
-    private int countSubsetsWithSumT(int[] items, int targetSum, int n) {
+    int countSubsetsWithSumT(int[] items, int targetSum, int n) {
         int[][] dp = new int[n + 1][targetSum + 1];
 
         for (int item = 0; item <= n; item++)
