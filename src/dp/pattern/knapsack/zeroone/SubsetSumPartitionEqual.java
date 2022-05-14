@@ -2,10 +2,10 @@ package dp.pattern.knapsack.zeroone;
 
 import java.io.PrintWriter;
 
-class SubsetSumEqualPartition {
+class SubsetSumPartitionEqual {
     private final SubsetSum subsetSum;
 
-    SubsetSumEqualPartition() {
+    SubsetSumPartitionEqual() {
         subsetSum = new SubsetSum();
     }
 
@@ -43,7 +43,7 @@ class SubsetSumEqualPartition {
         int[] items = {2, 3, 1, 4};
         int n = items.length;
 
-        SubsetSumEqualPartition equalPartition = new SubsetSumEqualPartition();
+        SubsetSumPartitionEqual equalPartition = new SubsetSumPartitionEqual();
 
         String sb = "Recursive : " + equalPartition.equalPartitionSubsetR(items, n) + "\n"
                 + "Memoized (Top-Down) : " + equalPartition.equalPartitionSubsetM(items, n) + "\n"
