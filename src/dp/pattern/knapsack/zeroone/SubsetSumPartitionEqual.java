@@ -11,7 +11,8 @@ class SubsetSumPartitionEqual {
 
     private boolean equalPartitionSubsetR(int[] items, int n) {
         int sum = 0;
-        for (int item : items) sum += item;
+        for (int item : items)
+            sum += item;
 
         if (sum % 2 != 0)
             return false;
@@ -21,7 +22,8 @@ class SubsetSumPartitionEqual {
 
     private boolean equalPartitionSubsetM(int[] items, int n) {
         int sum = 0;
-        for (int item : items) sum += item;
+        for (int item : items)
+            sum += item;
 
         if (sum % 2 != 0)
             return false;
@@ -31,7 +33,8 @@ class SubsetSumPartitionEqual {
 
     private boolean equalPartitionSubsetT(int[] items, int n) {
         int sum = 0;
-        for (int item : items) sum += item;
+        for (int item : items)
+            sum += item;
 
         if (sum % 2 != 0)
             return false;
@@ -40,7 +43,7 @@ class SubsetSumPartitionEqual {
     }
 
     public static void main(String[] args) {
-        int[] items = {2, 3, 1, 4};
+        int[] items = { 2, 3, 1, 4 };
         int n = items.length;
 
         SubsetSumPartitionEqual equalPartition = new SubsetSumPartitionEqual();
@@ -48,7 +51,6 @@ class SubsetSumPartitionEqual {
         String sb = "Recursive : " + equalPartition.equalPartitionSubsetR(items, n) + "\n"
                 + "Memoized (Top-Down) : " + equalPartition.equalPartitionSubsetM(items, n) + "\n"
                 + "Tabulation (Bottom-Up) : " + equalPartition.equalPartitionSubsetT(items, n);
-
 
         PrintWriter pw = new PrintWriter(System.out);
         pw.println(sb);
