@@ -50,7 +50,7 @@ class KnightsTour {
 		return false;
 	}
 
-	private static boolean isValidMove(int x, int y, int solution[][], int n) {
+	private static boolean isValidMove(int x, int y, int[][] solution, int n) {
 		return (x >= 0 && x < n && y >= 0 && y < n && solution[x][y] == -1);
 	}
 }
