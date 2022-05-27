@@ -3,7 +3,7 @@ package dp.pattern.lcs;
 import java.io.PrintWriter;
 import java.util.Arrays;
 
-class LongestCommonSubsequence {
+public class LongestCommonSubsequence {
     private int maxLCSLengthR(String x, String y) {
         char[] a = x.toLowerCase().toCharArray();
         char[] b = y.toLowerCase().toCharArray();
@@ -55,7 +55,7 @@ class LongestCommonSubsequence {
                     );
     }
 
-    private int maxLCSLengthT(String x, String y) {
+    public int maxLCSLengthT(String x, String y) {
         char[] a = x.toLowerCase().toCharArray();
         char[] b = y.toLowerCase().toCharArray();
         int m = a.length, n = b.length;
@@ -81,7 +81,7 @@ class LongestCommonSubsequence {
         return dp[m][n];
     }
 
-    private String printLCS(String x, String y) {
+    public String printLCS(String x, String y) {
         char[] a = x.toLowerCase().toCharArray();
         char[] b = y.toLowerCase().toCharArray();
         int m = a.length, n = b.length;
