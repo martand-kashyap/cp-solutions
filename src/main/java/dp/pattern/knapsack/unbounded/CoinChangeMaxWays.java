@@ -13,7 +13,7 @@ class CoinChangeMaxWays {
 
         if (denominations[n - 1] <= totalAmount) {
             return solveR(denominations, n, totalAmount - denominations[n - 1]) +
-                   solveR(denominations, n - 1, totalAmount);
+                    solveR(denominations, n - 1, totalAmount);
         } else
             return solveR(denominations, n - 1, totalAmount);
     }
@@ -27,8 +27,8 @@ class CoinChangeMaxWays {
 
         String sb =
                 "Recursive : " + maxWays.countMaxWaysR(denominations, n, totalAmount) + "\n" +
-                        "Memoized (Top-Down) : " + maxWays.countMaxWaysR(denominations, n, totalAmount) + "\n" +
-                        "Tabulation (Bottom-Up) : " + maxWays.countMaxWaysR(denominations, n, totalAmount);
+                "Memoized (Top-Down) : " + maxWays.countMaxWaysR(denominations, n, totalAmount) + "\n" +
+                "Tabulation (Bottom-Up) : " + maxWays.countMaxWaysR(denominations, n, totalAmount);
 
         PrintWriter pw = new PrintWriter(System.out);
         pw.println(sb);
