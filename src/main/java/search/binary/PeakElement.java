@@ -5,7 +5,9 @@ class PeakElement {
     public static void main(String[] args) {
         int[] nums = {1, 2, 1, 3, 5, 6, 4};
 
-        System.out.println("peak element index: " + findPeakElement(nums));
+        int idx = findPeakElement(nums);
+        System.out.println("peak element is at index: " + idx);
+        System.out.println("peak element is: " + nums[idx]);
     }
 
     private static int findPeakElement(int[] nums) {
@@ -25,8 +27,6 @@ class PeakElement {
             else
                 l = m + 1;
         }
-
         return m;
     }
-
 }
