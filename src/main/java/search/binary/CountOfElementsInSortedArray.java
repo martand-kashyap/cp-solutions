@@ -23,6 +23,6 @@ class CountOfElementsInSortedArray {
         int f = flo.firstOccurrence(arr, searchKey);
         int l = flo.lastOccurrence(arr, searchKey);
 
-        return l - f;
+        return l - f + 1;
     }
 }
