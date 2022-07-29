@@ -16,7 +16,7 @@ class RotatedArrayFindPivot {
         pw.close();
     }
 
-    private int findPivotIndex(int[] arr, int n) {
+    int findPivotIndex(int[] arr, int n) {
         int l = 0, u = n - 1;
         while (l <= u) {
             int m = l + (u - l) / 2;

@@ -22,7 +22,7 @@ class BinarySearch {
         return searchRecursively(arr, 0, n - 1, searchKey);
     }
 
-    private int searchRecursively(int[] arr, int l, int u, int searchKey) {
+    int searchRecursively(int[] arr, int l, int u, int searchKey) {
         if (l <= u) {
             int m = l + (u - l) / 2;
             if (searchKey < arr[m])
@@ -36,7 +36,7 @@ class BinarySearch {
         return -1;
     }
 
-    public int binarySearchI(int[] arr, int n, int searchKey) {
+    private int binarySearchI(int[] arr, int n, int searchKey) {
         int l = 0, u = n - 1;
 
         while (l <= u) {
