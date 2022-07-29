@@ -8,24 +8,25 @@ class FirstAndLastOccurrence {
         int[] nums = {5, 7, 7, 8, 8, 10};
         int target = 8;
 
-        int[] result = searchRange(nums, target);
+        FirstAndLastOccurrence flo = new FirstAndLastOccurrence();
+        int[] result = flo.searchRange(nums, target);
 
         Arrays.stream(result).forEach(t -> System.out.print(t + " "));
     }
 
-    public static int[] searchRange(int[] nums, int target) {
+    public int[] searchRange(int[] nums, int target) {
         if (nums.length == 0)
             return new int[]{-1, -1};
 
         int[] res = new int[2];
 
-        res[0] = firstOccurance(nums, target);
-        res[1] = lastOccurance(nums, target);
+        res[0] = firstOccurrence(nums, target);
+        res[1] = lastOccurrence(nums, target);
 
         return res;
     }
 
-    private static int firstOccurance(int[] nums, int k) {
+    public int firstOccurrence(int[] nums, int k) {
         int l = 0, r = nums.length - 1, f = -1;
 
         while (l <= r) {
@@ -43,7 +44,7 @@ class FirstAndLastOccurrence {
         return f;
     }
 
-    private static int lastOccurance(int[] nums, int k) {
+    public int lastOccurrence(int[] nums, int k) {
         int l = 0, r = nums.length - 1, f = -1;
 
         while (l <= r) {
