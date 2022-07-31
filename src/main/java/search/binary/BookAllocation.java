@@ -42,7 +42,7 @@ class BookAllocation {
         int n = pages.length, numberOfStudents = 2;
 
         BookAllocation ba = new BookAllocation();
-        String res = "Min #pages: " + ba.minimizePageAllocation(pages, n, numberOfStudents);
+        String res = "Min #pages for a student: " + ba.minimizePageAllocation(pages, n, numberOfStudents);
 
         PrintWriter pw = new PrintWriter(System.out);
         pw.println(res);
@@ -50,7 +50,11 @@ class BookAllocation {
     }
 
     private int minimizePageAllocation(int[] pages, int n, int numberOfStudents) {
-        int l = 0;
+        if (n < numberOfStudents) {
+            return -1;
+        }
+
+        int l = Arrays.stream(pages).max().getAsInt();
         int r = Arrays.stream(pages).sum();
         int result = Integer.MAX_VALUE;
 
@@ -75,7 +79,10 @@ class BookAllocation {
             sumOfPagesAllocated += pages[i];
 
             if (sumOfPagesAllocated > maxPagesPerStudent) {
+                //add new student
                 currentAllocatedStudents += 1;
+
+                //assign the current book(#pages) to the new student
                 sumOfPagesAllocated = pages[i];
             }
 
