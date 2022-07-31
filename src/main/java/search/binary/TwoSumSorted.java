@@ -7,11 +7,12 @@ class TwoSumSorted {
         int[] numbers = {2, 7, 11, 15};
         int target = 9;
 
-        int[] res = twoSum(numbers, target);
+        TwoSumSorted ts = new TwoSumSorted();
+        int[] res = ts.twoSum(numbers, target);
         Arrays.stream(res).forEach(e -> System.out.print(e + " "));
     }
 
-    private static int[] twoSum(int[] numbers, int target) {
+    private int[] twoSum(int[] numbers, int target) {
         int l = 0, r = numbers.length - 1;
 
         while (l < r) {
