@@ -30,8 +30,7 @@ class BalancedParenthesisChecker {
                         (ic == '}' && top != '{') ||
                         (ic == ']' && top != '[')) {
                     return false;
-                }
-                else
+                } else
                     stack.pop();
             }
         }
