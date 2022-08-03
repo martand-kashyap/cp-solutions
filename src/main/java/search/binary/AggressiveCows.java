@@ -66,6 +66,6 @@ class AggressiveCows {
                 return true;
         }
 
-		return false;
-	}
+        return false;
+    }
 }
