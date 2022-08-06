@@ -42,6 +42,25 @@ class TrappingRainwaterProblem {
     }
 
     private int totalRainwaterTrappedTwoPointer(int[] heights) {
-        return -1;
+        int totalWaterTrapped = 0, maxLeft = 0, maxRight = 0, l = 0, r = heights.length - 1;
+
+        while (l < r) {
+            if (maxLeft < heights[l]) {
+                maxLeft = heights[l];
+            }
+
+            if (maxRight < heights[r]) {
+                maxRight = heights[r];
+            }
+
+            if (maxLeft < maxRight) {
+                totalWaterTrapped += maxLeft - heights[l];
+                l += 1;
+            } else {
+                totalWaterTrapped += maxRight - heights[r];
+                r -= 1;
+            }
+        }
+        return totalWaterTrapped;
     }
 }
