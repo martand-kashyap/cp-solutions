@@ -4,21 +4,20 @@ import java.util.Arrays;
 
 class Sudoku {
     public static void main(String[] args) {
-        int[][] sudokuBoard =
-                {
-                        {3, 0, 6, 5, 0, 8, 4, 0, 0},
-                        {5, 2, 0, 0, 0, 0, 0, 0, 0},
-                        {0, 8, 7, 0, 0, 0, 0, 3, 1},
-                        {0, 0, 3, 0, 1, 0, 0, 8, 0},
-                        {9, 0, 0, 8, 6, 3, 0, 0, 5},
-                        {0, 5, 0, 0, 9, 0, 6, 0, 0},
-                        {1, 3, 0, 0, 0, 0, 2, 5, 0},
-                        {0, 0, 0, 0, 0, 0, 0, 7, 4},
-                        {0, 0, 5, 2, 0, 6, 3, 0, 0}
-                };
+        int[][] sudokuBoard = {
+                {3, 0, 6, 5, 0, 8, 4, 0, 0},
+                {5, 2, 0, 0, 0, 0, 0, 0, 0},
+                {0, 8, 7, 0, 0, 0, 0, 3, 1},
+                {0, 0, 3, 0, 1, 0, 0, 8, 0},
+                {9, 0, 0, 8, 6, 3, 0, 0, 5},
+                {0, 5, 0, 0, 9, 0, 6, 0, 0},
+                {1, 3, 0, 0, 0, 0, 2, 5, 0},
+                {0, 0, 0, 0, 0, 0, 0, 7, 4},
+                {0, 0, 5, 2, 0, 6, 3, 0, 0}
+        };
         int n = 9;
 
-        if (isSudokuSolved(sudokuBoard, 0, 0, n))
+        if (solutionExists(sudokuBoard, 0, 0, n))
             printSolvedBoard(sudokuBoard);
         else
             System.out.println("no solution");
@@ -31,7 +30,7 @@ class Sudoku {
         }
     }
 
-    private static boolean isSudokuSolved(int[][] board, int r, int c, int n) {
+    private static boolean solutionExists(int[][] board, int r, int c, int n) {
         if (r == n - 1 && c == n)
             return true;
 
@@ -41,13 +40,13 @@ class Sudoku {
         }
 
         if (board[r][c] != 0)
-            return isSudokuSolved(board, r, c + 1, n);
+            return solutionExists(board, r, c + 1, n);
 
         for (int o = 1; o < 10; o++) {
             if (isValidAllocation(board, r, c, n, o)) {
                 board[r][c] = o;
 
-                if (isSudokuSolved(board, r, c + 1, n))
+                if (solutionExists(board, r, c + 1, n))
                     return true;
 
                 board[r][c] = 0;

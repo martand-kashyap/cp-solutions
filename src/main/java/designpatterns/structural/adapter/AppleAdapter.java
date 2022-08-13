@@ -3,7 +3,7 @@ package designpatterns.structural.adapter;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
-class AppleAdapter implements Apple{
+class AppleAdapter implements Apple {
     private Orange orange;
 
     @Override

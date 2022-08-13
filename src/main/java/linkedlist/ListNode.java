@@ -18,10 +18,14 @@ class ListNode {
 }
 
 class LLHelper {
-    public static void print(ListNode head) {
+    static String print(ListNode head) {
+        StringBuffer output = new StringBuffer();
+
         while (head != null) {
-            System.out.print(head.val + "->");
+            output.append(head.val).append("->");
             head = head.next;
         }
+        output.append("\n");
+        return output.toString();
     }
 }

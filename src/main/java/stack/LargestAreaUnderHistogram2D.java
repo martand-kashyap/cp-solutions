@@ -19,16 +19,20 @@ class LargestAreaUnderHistogram2D {
         int[] compressed2D = new int[c];
 
         // compress the 1st row
-        for (int j = 0; j < c; j += 1)
+        for (int j = 0; j < c; j += 1) {
             compressed2D[j] = arr[0][j];
+        }
         // solve for the first row only
         maxArea = h.getMaxAreaUnderHistogram(compressed2D);
 
         for (int i = 1; i < r; i += 1) {
             // add each row & solve each time
             for (int j = 0; j < c; j += 1) {
-                if (arr[i][j] == 0) compressed2D[j] = 0;
-                else compressed2D[j] += arr[i][j];
+                if (arr[i][j] == 0) {
+                    compressed2D[j] = 0;
+                } else {
+                    compressed2D[j] += arr[i][j];
+                }
             }
             int maxInRow = h.getMaxAreaUnderHistogram(compressed2D);
             maxArea = Integer.max(maxArea, maxInRow);

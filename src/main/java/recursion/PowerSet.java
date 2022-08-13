@@ -2,14 +2,14 @@ package recursion;
 
 class PowerSet {
 
-	public static void main(String[] args) {
-		String ip = "ABCD";
-		
-		printAllSets(ip, "");
-	}
+    public static void main(String[] args) {
+        String ip = "ABCD";
 
-	private static void printAllSets(String ip, String op) {
-		
-	}
+        printAllSets(ip, "");
+    }
+
+    private static void printAllSets(String ip, String op) {
+
+    }
 
 }
