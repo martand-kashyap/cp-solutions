@@ -9,7 +9,7 @@ import java.util.Queue;
 class KthSmallestElement {
     public static void main(String[] args) {
         int[] arr = {7, 10, 4, 3, 20, 15};
-        int n = arr.length, k = 2;
+        int n = arr.length, k =4 ;
 
         KthSmallestElement kse = new KthSmallestElement();
         String res = "kth smallest element (k=" + k + ") in " + Arrays.toString(arr) + " is: -\n\n"
