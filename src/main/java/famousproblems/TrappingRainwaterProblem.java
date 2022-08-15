@@ -5,17 +5,18 @@ import java.util.Arrays;
 
 class TrappingRainwaterProblem {
     public static void main(String[] args) {
-        int[] arr = {3, 0, 0, 2, 0, 4};
+        int[] arr = {0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1};
 
         TrappingRainwaterProblem trp = new TrappingRainwaterProblem();
-        String res = "Total trapped rainwater (DP approach): " + trp.totalRainwaterTrappedDP(arr) + "\nTotal trapped rainwater (2 pointer approach): " + trp.totalRainwaterTrappedTwoPointer(arr);
+        String res = "Total trapped rainwater (DP approach): " + trp.usingDP(arr)
+                + "\nTotal trapped rainwater (2 pointer approach): " + trp.using2Pointers(arr);
 
         PrintWriter pw = new PrintWriter(System.out);
         pw.println(res);
         pw.close();
     }
 
-    private long totalRainwaterTrappedDP(int[] heights) {
+    private long usingDP(int[] heights) {
         long[] waterTrappedOnBuilding = new long[heights.length];
         int[] maxOnRight = new int[heights.length];
         int[] maxOnLeft = new int[heights.length];
@@ -41,7 +42,7 @@ class TrappingRainwaterProblem {
         return totalWaterTrapped;
     }
 
-    private int totalRainwaterTrappedTwoPointer(int[] heights) {
+    private int using2Pointers(int[] heights) {
         int totalWaterTrapped = 0, maxLeft = 0, maxRight = 0, l = 0, r = heights.length - 1;
 
         while (l < r) {
