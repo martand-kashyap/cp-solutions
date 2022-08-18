@@ -42,7 +42,7 @@ class KthSmallestElement {
         return minHeap.peek();
     }
 
-    private int usingMaxHeap(int[] arr, int n, int k) {
+    int usingMaxHeap(int[] arr, int n, int k) {
         PriorityQueue<Integer> maxHeap = new PriorityQueue<>(k, Collections.reverseOrder());
 
         for (int i = 0; i < n; i++) {
