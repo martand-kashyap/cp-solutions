@@ -7,11 +7,11 @@ class SumBetweenK1AndK2Smallest {
     /*-
         Given an array of N positive integers and two positive integers K1 and K2,
         find the sum of all elements between K1th and K2th smallest elements of the array.
-
+    
         It may be assumed that (1 <= k1 < k2 <= n).
      */
     public static void main(String[] args) {
-        int[] arr = {20, 8, 22, 4, 12, 10, 14};
+        int[] arr = { 20, 8, 22, 4, 12, 10, 14 };
         int n = arr.length, k1 = 3, k2 = 6;
 
         SumBetweenK1AndK2Smallest k1k2 = new SumBetweenK1AndK2Smallest();

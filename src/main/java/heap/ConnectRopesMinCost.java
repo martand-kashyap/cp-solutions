@@ -10,7 +10,7 @@ class ConnectRopesMinCost {
     /*-
     There are given n ropes of different lengths, we need to connect these ropes into one rope.
     The cost to connect two ropes is equal to the sum of their lengths. We need to connect the ropes with minimum cost.
-
+    
     For example, if we are given 4 ropes of lengths 4, 3, 2, and 6. We can connect the ropes in the following ways.
     First, connect ropes of lengths 2 and 3. Now we have three ropes of lengths 4, 6, and 5.
     Now connect ropes of lengths 4 and 5. Now we have two ropes of lengths 6 and 9.
@@ -19,7 +19,7 @@ class ConnectRopesMinCost {
     This is the optimized cost for connecting ropes.
      */
     public static void main(String[] args) {
-        int[] lengths = {4, 3, 2, 6};
+        int[] lengths = { 4, 3, 2, 6 };
 
         ConnectRopesMinCost crmc = new ConnectRopesMinCost();
         String res = "Minimized cost for connecting ropes: " + crmc.findLeastCost(lengths);
@@ -33,7 +33,7 @@ class ConnectRopesMinCost {
         PriorityQueue<Integer> minHeap = new PriorityQueue<>();
         int minCost = 0;
 
-        //build the minHeap
+        // build the minHeap
         List<Integer> temp = Arrays.stream(lengths).boxed().toList();
         minHeap.addAll(temp);
 
