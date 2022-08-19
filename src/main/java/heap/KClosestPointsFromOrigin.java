@@ -6,7 +6,7 @@ import java.util.PriorityQueue;
 
 class KClosestPointsFromOrigin {
     public static void main(String[] args) {
-        int[][] points = { { 1, 0 }, { 2, 1 }, { 3, 6 }, { -5, 2 }, { 1, -4 } };
+        int[][] points = {{1, 0}, {2, 1}, {3, 6}, {-5, 2}, {1, -4}};
         int k = 3, n = points.length;
 
         KClosestPointsFromOrigin kcpo = new KClosestPointsFromOrigin();
@@ -14,7 +14,8 @@ class KClosestPointsFromOrigin {
 
         StringBuffer res = new StringBuffer("K = " + k + " closest points from (0, 0)\n");
         for (int[] point : closestPoints) {
-            res.append(Arrays.toString(point) + "\n");
+            res.append(Arrays.toString(point))
+                    .append("\n");
         }
 
         PrintWriter pw = new PrintWriter(System.out);
