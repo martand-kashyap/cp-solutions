@@ -14,7 +14,11 @@ class ClimbingStairs {
         if (n == 1) return 1;
         if (n == 2) return 2;
 
-        return climbStairsR(n - 1) + climbStairsR(n - 2) + climbStairsR(n - 3);
+        int part1 = climbStairsR(n - 1);
+        int part2 = climbStairsR(n - 2);
+        int part3 = climbStairsR(n - 3);
+
+        return part1 + part2 + part3;
     }
 
     private int climbStairsM(int n) {
@@ -28,9 +32,15 @@ class ClimbingStairs {
         if (n == 0) return 1;
         if (n == 1) return 1;
         if (n == 2) return 2;
-        if (dp[n] != -1) return dp[n];
 
-        return memoize(n - 1, dp) + memoize(n - 2, dp) + memoize(n - 3, dp);
+        if (dp[n] != -1)
+            return dp[n];
+
+        int part1 = memoize(n - 1, dp);
+        int part2 = memoize(n - 2, dp);
+        int part3 = memoize(n - 3, dp);
+
+        return part1 + part2 + part3;
     }
 
     private int climbStairsT(int n) {
@@ -42,6 +52,7 @@ class ClimbingStairs {
         dp[0] = 1;
         dp[1] = 1;
         dp[2] = 2;
+
         for (int i = 3; i <= n; i++)
             dp[i] = dp[i - 1] + dp[i - 2] + dp[i - 3];
 
@@ -70,9 +81,9 @@ class ClimbingStairs {
 
         String sb =
                 "Recursive : " + cs.climbStairsR(n) + "\n" +
-                "Memoized (Top-Down) : " + cs.climbStairsM(n) + "\n" +
-                "Tabulation (Bottom-Up) : " + cs.climbStairsT(n) + "\n" +
-                "Optimized : " + cs.optimized(n);
+                        "Memoized (Top-Down) : " + cs.climbStairsM(n) + "\n" +
+                        "Tabulation (Bottom-Up) : " + cs.climbStairsT(n) + "\n" +
+                        "Optimized : " + cs.optimized(n);
 
         PrintWriter pw = new PrintWriter(System.out);
         pw.println(sb);

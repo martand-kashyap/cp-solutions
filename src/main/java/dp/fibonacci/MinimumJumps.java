@@ -15,8 +15,12 @@ class MinimumJumps {
     }
 
     private int solveR(int[] jumpLengths, int l, int h) {
-        if (l >= h) return 0;
-        if (jumpLengths[l] == 0) return Integer.MAX_VALUE;
+        if (l >= h)
+            return 0;
+
+        if (jumpLengths[l] == 0)
+            return Integer.MAX_VALUE;
+
 
         int minNumberOfJumps = Integer.MAX_VALUE;
         for (int i = 1; i <= jumpLengths[l] && i <= h; i += 1) {
@@ -35,9 +39,14 @@ class MinimumJumps {
     }
 
     private int memoize(int[] jumpLengths, int l, int h, int[] dp) {
-        if (l >= h) return 0;
-        if (jumpLengths[l] == 0) return Integer.MAX_VALUE;
-        if (dp[l] != -1) return dp[l];
+        if (l >= h)
+            return 0;
+
+        if (jumpLengths[l] == 0)
+            return Integer.MAX_VALUE;
+
+        if (dp[l] != -1)
+            return dp[l];
 
         int minNumberOfJumps = Integer.MAX_VALUE;
         for (int i = 1; i <= jumpLengths[l] && i <= h; i += 1) {
@@ -49,7 +58,7 @@ class MinimumJumps {
     }
 
     private int minJumpsT(int[] jumpLengths) {
-        int[] dp = new int[jumpLengths.length+1];
+        int[] dp = new int[jumpLengths.length + 1];
         Arrays.fill(dp, Integer.MAX_VALUE);
         dp[0] = 0;
 
@@ -67,8 +76,8 @@ class MinimumJumps {
 
         String sb =
                 "Recursive : " + mj.minJumpsR(jumpLengths) + "\n" +
-                "Memoized (Top-Down) : " + mj.minJumpsM(jumpLengths) + "\n" +
-                "Tabulation (Bottom-Up) : " + mj.minJumpsT(jumpLengths);
+                        "Memoized (Top-Down) : " + mj.minJumpsM(jumpLengths) + "\n" +
+                        "Tabulation (Bottom-Up) : " + mj.minJumpsT(jumpLengths);
 
         PrintWriter pw = new PrintWriter(System.out);
         pw.println(sb);
