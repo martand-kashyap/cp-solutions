@@ -1,0 +1,6 @@
+package famousproblems;
+
+
+class MaxAreaRectangleInBinaryMatrix {
+
+}

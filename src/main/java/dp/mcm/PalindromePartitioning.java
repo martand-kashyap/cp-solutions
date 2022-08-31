@@ -1,4 +1,4 @@
 package dp.mcm;
 
-public class PalindromePartitioning {
+class PalindromePartitioning {
 }

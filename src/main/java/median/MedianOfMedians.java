@@ -1,8 +1,7 @@
-package linkedlist;
+package median;
 
-class MergeSortLL {
+class MedianOfMedians {
     public static void main(String[] args) {
 
     }
-
 }

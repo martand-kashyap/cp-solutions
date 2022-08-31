@@ -1,0 +1,4 @@
+package famousproblems;
+
+class TowerOfHanoi {
+}

@@ -1,0 +1,4 @@
+package disjointset;
+
+class PathCompression {
+}

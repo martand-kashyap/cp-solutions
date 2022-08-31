@@ -1,7 +1,7 @@
 package dp.lcs;
 
-class LongestCommonSupersequence {
+class LargestRepeatingSubsequence {
     public static void main(String[] args) {
-    	
+
     }
 }
