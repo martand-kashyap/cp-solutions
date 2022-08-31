@@ -1,16 +1,18 @@
-package search.binary.modified;
+package search.binary;
 
 class PeakElement {
 
     public static void main(String[] args) {
         int[] nums = {1, 2, 1, 3, 5, 6, 4};
 
-        int idx = findPeakElement(nums);
+        PeakElement pe = new PeakElement();
+        int idx = pe.findPeakElement(nums);
+
         System.out.println("peak element is at index: " + idx);
         System.out.println("peak element is: " + nums[idx]);
     }
 
-    private static int findPeakElement(int[] nums) {
+    int findPeakElement(int[] nums) {
         if (nums.length == 1)
             return 0;
 

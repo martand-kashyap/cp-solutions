@@ -1,4 +1,4 @@
-package search.binary.modified;
+package search.binary;
 
 import java.io.PrintWriter;
 import java.util.Arrays;
