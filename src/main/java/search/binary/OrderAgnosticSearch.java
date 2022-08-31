@@ -6,7 +6,6 @@ class OrderAgnosticSearch {
     public static void main(String[] args) {
         int[] arrDec = {40, 10, 5, 2, 1};
         int[] arrAsc = {1, 2, 5, 10, 40};
-
         int searchKey = 10, n = arrDec.length;
 
         OrderAgnosticSearch oas = new OrderAgnosticSearch();
@@ -16,19 +15,17 @@ class OrderAgnosticSearch {
 
         PrintWriter pw = new PrintWriter(System.out);
         pw.println(res);
-
         pw.close();
     }
 
     private int orderAgnosticBinarySearch(int[] arr, int n, int searchKey) {
         if (arr[0] < arr[1])
-            return binarySearchAsc(arr, n, searchKey);
+            return binarySearchAsc(arr, 0, n - 1, searchKey);
         else
-            return binarySearchDsc(arr, n, searchKey);
+            return binarySearchDsc(arr, 0, n - 1, searchKey);
     }
 
-    private int binarySearchAsc(int[] arr, int n, int searchKey) {
-        int l = 0, u = n - 1;
+    int binarySearchAsc(int[] arr, int l, int u, int searchKey) {
         while (l <= u) {
             int m = l + (u - l) / 2;
             if (searchKey < arr[m])
@@ -41,8 +38,7 @@ class OrderAgnosticSearch {
         return -1;
     }
 
-    private int binarySearchDsc(int[] arr, int n, int searchKey) {
-        int l = 0, u = n - 1;
+    int binarySearchDsc(int[] arr, int l, int u, int searchKey) {
         while (l <= u) {
             int m = l + (u - l) / 2;
             if (searchKey < arr[m])
