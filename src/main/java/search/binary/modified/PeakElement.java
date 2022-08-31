@@ -1,4 +1,4 @@
-package search.binary;
+package search.binary.modified;
 
 class PeakElement {
 
