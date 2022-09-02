@@ -70,6 +70,22 @@ class KnapsackUnbounded {
         return dp[n][knapsackCapacity];
     }
 
+    private int maximizeProfitT1D(int[] weights, int[] profits, int n, int knapsackCapacity) {
+        int[] dp = new int[knapsackCapacity + 1];
+
+        for (int i = 1; i <= n; i += 1) {
+            for (int w = 0; w <= knapsackCapacity; w += 1) {
+                if (weights[i - 1] <= w)
+                    dp[w] = Integer.max(
+                            profits[i - 1] + dp[w - weights[i - 1]],
+                            dp[w]
+                    );
+            }
+        }
+
+        return dp[knapsackCapacity];
+    }
+
     public static void main(String[] args) {
         int knapsackCapacity = 100;
         int[] profits = {10, 30, 20};
@@ -80,7 +96,8 @@ class KnapsackUnbounded {
 
         String sb = "Recursive : " + kUn.maximizeProfitR(weights, profits, n, knapsackCapacity) + "\n"
                 + "Memoized (Top-Down) : " + kUn.maximizeProfitM(weights, profits, n, knapsackCapacity) + "\n"
-                + "Tabulation (Bottom-Up) : " + kUn.maximizeProfitT(weights, profits, n, knapsackCapacity);
+                + "Tabulation (Bottom-Up) [2D] : " + kUn.maximizeProfitT(weights, profits, n, knapsackCapacity) + "\n"
+                + "Tabulation (Bottom-Up) [1D]: " + kUn.maximizeProfitT1D(weights, profits, n, knapsackCapacity);
 
         PrintWriter pw = new PrintWriter(System.out);
         pw.println(sb);
