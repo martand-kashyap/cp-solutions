@@ -83,13 +83,14 @@ class KnapsackUnbounded {
             }
         }
 
+        System.out.println(Arrays.toString(dp));
         return dp[knapsackCapacity];
     }
 
     public static void main(String[] args) {
-        int knapsackCapacity = 100;
-        int[] profits = {10, 30, 20};
-        int[] weights = {5, 10, 15};
+        int knapsackCapacity = 5;
+        int[] profits = { 15, 20, 50 };
+        int[] weights = { 1, 2, 3 };
         int n = weights.length;
 
         KnapsackUnbounded kUn = new KnapsackUnbounded();
