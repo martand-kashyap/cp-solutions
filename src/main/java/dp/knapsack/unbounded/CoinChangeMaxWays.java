@@ -99,6 +99,19 @@ class CoinChangeMaxWays {
         return dp[n][totalAmount];
     }
 
+    private int countMaxWaysT1D(int[] denominations, int n, int totalAmount) {
+        int[] dp = new int[totalAmount + 1];
+        dp[0] = 1;
+
+        for (int coin = 0; coin < n; coin += 1) {
+            for (int amt = denominations[coin]; amt <= totalAmount; amt += 1) {
+                dp[amt] = dp[amt - denominations[coin]] + dp[amt];
+            }
+        }
+
+        return dp[totalAmount];
+    }
+
     public static void main(String[] args) {
         int[] denominations = {1, 2, 3};
         int n = denominations.length;
@@ -110,7 +123,8 @@ class CoinChangeMaxWays {
                 "Recursive : " + maxWays.countMaxWaysR(denominations, n, totalAmount) + "\n" +
                         "Recursive (Optimized) : " + maxWays.countMaxWaysROptimized(denominations, n, totalAmount) + "\n" +
                         "Memoized (Top-Down) : " + maxWays.countMaxWaysM(denominations, n, totalAmount) + "\n" +
-                        "Tabulation (Bottom-Up) : " + maxWays.countMaxWaysT(denominations, n, totalAmount);
+                        "Tabulation 2D (Bottom-Up) : " + maxWays.countMaxWaysT(denominations, n, totalAmount) + "\n" +
+                        "Tabulation 1D (Bottom-Up) : " + maxWays.countMaxWaysT1D(denominations, n, totalAmount);
 
         PrintWriter pw = new PrintWriter(System.out);
         pw.println(sb);
