@@ -118,7 +118,7 @@ class CoinChangeMinCoins {
 //                        "Recursive (Optimized) : " + minWays.countMinWaysR(denominations, n, totalAmount) + "\n" +
                         "Memoized (Top-Down) : " + minWays.countMinWaysM(denominations, n, totalAmount) + "\n" +
                         "Tabulation 2D (Bottom-Up) : " + minWays.countMinWaysT(denominations, n, totalAmount) + "\n" +
-                        "Tabulation 1D (Bottom-Up) : " + minWays.countMinWaysR(denominations, n, totalAmount);
+                        "Tabulation 1D (Bottom-Up) : " + minWays.countMinWaysT(denominations, n, totalAmount);
 
         PrintWriter pw = new PrintWriter(System.out);
         pw.println(sb);

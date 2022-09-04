@@ -3,30 +3,33 @@ package dp.fibonacci;
 import java.io.PrintWriter;
 import java.util.Arrays;
 
-/**
- * Given an array of non-negative integers nums, you are initially positioned at the first index of the array.
- * Each element in the array represents your maximum jump length at that position.
- * Your goal is to reach the last index in the minimum number of jumps.
- * You can assume that you can always reach the last index.
- */
+
 class MinimumJumps {
+    /*-
+        Given an array of non-negative integers nums, you are initially positioned at the first index of the array.
+        Each element in the array represents your maximum jump length at that position.
+        Your goal is to reach the last index in the minimum number of jumps.
+        You can assume that you can always reach the last index.
+    */
     private int minJumpsR(int[] jumpLengths) {
         return solveR(jumpLengths, 0, jumpLengths.length - 1);
     }
 
     private int solveR(int[] jumpLengths, int l, int h) {
-        if (l >= h)
+        if (l >= h) {
             return 0;
+        }
 
-        if (jumpLengths[l] == 0)
+        if (jumpLengths[l] == 0) {
             return Integer.MAX_VALUE;
-
+        }
 
         int minNumberOfJumps = Integer.MAX_VALUE;
         for (int i = 1; i <= jumpLengths[l] && i <= h; i += 1) {
             int numberOfJumps = solveR(jumpLengths, l + i, h);
-            if (numberOfJumps != Integer.MAX_VALUE)
+            if (numberOfJumps != Integer.MAX_VALUE) {
                 minNumberOfJumps = Integer.min(minNumberOfJumps, numberOfJumps + 1);
+            }
         }
         return minNumberOfJumps;
     }
@@ -81,7 +84,6 @@ class MinimumJumps {
 
         PrintWriter pw = new PrintWriter(System.out);
         pw.println(sb);
-
         pw.close();
     }
 }

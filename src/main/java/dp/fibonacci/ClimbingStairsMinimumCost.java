@@ -3,14 +3,13 @@ package dp.fibonacci;
 import java.io.PrintWriter;
 import java.util.Arrays;
 
-/**
- * You are given an integer array cost where cost[i] is the cost of ith step on a staircase.
- * Once you pay the cost, you can either climb one or two steps.
- * You can either start from the step with index 0, or the step with index 1.
- * Return the minimum cost to reach the top of the floor.
- */
-
 class ClimbingStairsMinimumCost {
+    /*-
+        You are given an integer array cost where cost[i] is the cost of ith step on a staircase.
+        Once you pay the cost, you can either climb one or two steps.
+        You can either start from the step with index 0, or the step with index 1.
+        Return the minimum cost to reach the top of the floor.
+     */
     int getMinCostToClimbStairsR(int[] cost) {
         return solveR(cost, cost.length);
     }
@@ -75,8 +74,8 @@ class ClimbingStairsMinimumCost {
 
         String sb =
                 "Recursive : " + csmc.getMinCostToClimbStairsR(cost) + "\n" +
-                "Memoized (Top-Down) : " + csmc.getMinCostToClimbStairsM(cost) + "\n" +
-                "Tabulation (Bottom-Up) : " + csmc.getMinCostToClimbStairsT(cost);
+                        "Memoized (Top-Down) : " + csmc.getMinCostToClimbStairsM(cost) + "\n" +
+                        "Tabulation (Bottom-Up) : " + csmc.getMinCostToClimbStairsT(cost);
 //        sb.append("Optimized : " + csmc.optimized(cost));
 
         PrintWriter pw = new PrintWriter(System.out);

@@ -3,15 +3,15 @@ package dp.fibonacci;
 import java.io.PrintWriter;
 import java.util.Arrays;
 
-/**
- * You are a professional robber planning to rob houses along a street.
- * Each house has a certain amount of money stashed,
- * the only constraint stopping you from robbing each of them is that adjacent houses have security systems connected
- * and it will automatically contact the police if two adjacent houses were broken into on the same night.
- * Given an integer array nums representing the amount of money of each house,
- * return the maximum amount of money you can rob tonight without alerting the police.
- */
 class HouseRobber {
+    /*-
+        You are a professional robber planning to rob houses along a street.
+        Each house has a certain amount of money stashed,
+        the only constraint stopping you from robbing each of them is that adjacent houses have security systems connected
+        and it will automatically contact the police if two adjacent houses were broken into on the same night.
+        Given an integer array nums representing the amount of money of each house,
+        return the maximum amount of money you can rob tonight without alerting the police.
+    */
     private int robHousesR(int[] wealth) {
         return solveR(wealth, 0, wealth.length);
     }
@@ -65,12 +65,11 @@ class HouseRobber {
 
         String sb =
                 "Recursive : " + hr.robHousesR(wealth) + "\n" +
-                "Memoized (Top-Down) : " + hr.robHousesM(wealth) + "\n" +
-                "Tabulation (Bottom-Up) : " + hr.robHousesT(wealth);
+                        "Memoized (Top-Down) : " + hr.robHousesM(wealth) + "\n" +
+                        "Tabulation (Bottom-Up) : " + hr.robHousesT(wealth);
 
         PrintWriter pw = new PrintWriter(System.out);
         pw.println(sb);
-
         pw.close();
     }
 }
