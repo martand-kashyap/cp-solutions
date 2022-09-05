@@ -7,8 +7,8 @@ class MatrixChainMultiplication {
     public static void main(String[] args) {
         int[] sizes = {1, 2, 3, 4, 3};
         MatrixChainMultiplication mcm = new MatrixChainMultiplication();
-        String res = "Using recursion: " + mcm.getOptimalMultiplicationCostR(sizes) + "\n"
-                + "Memoized (Top-Down) : " + mcm.getOptimalMultiplicationCostM(sizes);
+        String res = "Using recursion T(n) = O(2^n) : " + mcm.getOptimalMultiplicationCostR(sizes) + "\n"
+                + "Memoized (Top-Down) T(n) = O(n^2) : " + mcm.getOptimalMultiplicationCostM(sizes);
 
         PrintWriter pw = new PrintWriter(System.out);
         pw.println(res);
@@ -58,8 +58,8 @@ class MatrixChainMultiplication {
 
         int minCost = Integer.MAX_VALUE;
         for (int k = i; k < j; k += 1) {
-            int temp1 = solveR(sizes, i, k);
-            int temp2 = solveR(sizes, k + 1, j);
+            int temp1 = dp[i][k] != -1 ? dp[i][k] : solveM(sizes, i, k, dp);
+            int temp2 = dp[k + 1][j] != -1 ? dp[k + 1][j] : solveM(sizes, k + 1, j, dp);
             int cost = temp1 + temp2 + sizes[i - 1] * sizes[k] * sizes[j];
 
             minCost = Integer.min(minCost, cost);
