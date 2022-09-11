@@ -62,19 +62,35 @@ class EggDropping {
     }
 
     private int solveR(int e, int f) {
+        //If there is only one egg, start from the bottom floor & keep throwing eggs until it breaks.
         if (e == 1)
             return f;
 
+        //0 floors => no need to try
+        //1 floor  => only 1 way possible, throw egg, it will either break or not break
         if (f == 0 || f == 1)
             return f;
 
         int minNumberOfAttempts = Integer.MAX_VALUE;
 
         for (int k = 1; k <= f; k += 1) {
+            /*
+                An egg is thrown & it breaks
+                => any floor above the current floor will also cause the egg to break
+                => discard the broken egg & look for solutions below the current floor
+             */
             int eggBreak = solveR(e - 1, k - 1);
+
+            /*
+                An egg is thrown & it does not break
+                => any floor below the current floor also will not cause the egg to break.
+                => re-use the current egg & look for solutions above the current floor
+             */
             int eggNotBreak = solveR(e, f - k);
+
             int attemptCount = 1 + Math.max(eggBreak, eggNotBreak);
 
+            // Minimise the number of attempts
             minNumberOfAttempts = Math.min(minNumberOfAttempts, attemptCount);
         }
 
