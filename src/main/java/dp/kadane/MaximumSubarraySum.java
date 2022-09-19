@@ -45,7 +45,7 @@ class MaximumSubarraySum {
         return maxSubarray;
     }
 
-    private int kadaneAlgorithm(int n, int[] nums) {
+    int kadaneAlgorithm(int n, int[] nums) {
         int maxSubarray = Integer.MIN_VALUE, currentSubarray = 0;
 
         for (int i = 0; i < n; i++) {

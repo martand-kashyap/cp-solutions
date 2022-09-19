@@ -10,7 +10,8 @@ class MinimumSubarraySum {
 
         String res = "Bruteforce T(n) = O(n^3) : " + mss.bruteforce(n, nums) + "\n" +
                 "Bruteforce Optimized T(n) = O(n^2) : " + mss.bruteforceO(n, nums) + "\n" +
-                "Kadane T(n) = O(n) : " + mss.modifiedKadane(n, nums);
+                "Kadane T(n) = O(n) : " + mss.modifiedKadane(n, nums) + "\n" +
+                "Inverted Kadane T(n) = O(n) : " + mss.invertedKadane(n, nums);
 
         PrintWriter pw = new PrintWriter(System.out);
         pw.println(res);
@@ -45,7 +46,7 @@ class MinimumSubarraySum {
         return minSubarray;
     }
 
-    private int modifiedKadane(int n, int[] nums) {
+    int modifiedKadane(int n, int[] nums) {
         int minSubarray = Integer.MAX_VALUE, currentSubarray = 0;
 
         for (int i = 0; i < n; i++) {
@@ -55,5 +56,15 @@ class MinimumSubarraySum {
         }
 
         return minSubarray;
+    }
+
+    private int invertedKadane(int n, int[] nums) {
+        MaximumSubarraySum mss = new MaximumSubarraySum();
+
+        for (int i = 0; i < n; i++) {
+            nums[i] = (-1) * nums[i];
+        }
+
+        return (-1) * mss.kadaneAlgorithm(n, nums);
     }
 }
