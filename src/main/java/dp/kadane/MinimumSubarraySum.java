@@ -10,7 +10,7 @@ class MinimumSubarraySum {
 
         String res = "Bruteforce T(n) = O(n^3) : " + mss.bruteforce(n, nums) + "\n" +
                 "Bruteforce Optimized T(n) = O(n^2) : " + mss.bruteforceO(n, nums) + "\n" +
-                "Kadane T(n) = O(n) : " + mss.modifiedKadane(n, nums) + "\n" +
+                "Modified Kadane T(n) = O(n) : " + mss.modifiedKadane(n, nums) + "\n" +
                 "Inverted Kadane T(n) = O(n) : " + mss.invertedKadane(n, nums);
 
         PrintWriter pw = new PrintWriter(System.out);
