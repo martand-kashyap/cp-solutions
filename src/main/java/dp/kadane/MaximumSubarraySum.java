@@ -15,6 +15,7 @@ class MaximumSubarraySum {
                 "Bruteforce T(n) = O(n^3) : " + mss.bruteforce(n, nums) + "\n" +
                         "Bruteforce Optimized T(n) = O(n^2) : " + mss.bruteforceO(n, nums) + "\n" +
                         "Kadane T(n) = O(n) : " + mss.kadaneAlgorithm(n, nums) + "\n" +
+                        "Kadane (alternative implementation) T(n) = O(n) : " + mss.kadaneAlgorithmAlternative(n, nums) + "\n" +
                         "Max Sum Subarray : " + Arrays.toString(maxSubArray);
 
         PrintWriter pw = new PrintWriter(System.out);
@@ -57,6 +58,21 @@ class MaximumSubarraySum {
             localBestSum += nums[i];
             globalBestSum = Math.max(globalBestSum, localBestSum);
             localBestSum = Math.max(localBestSum, 0);
+        }
+
+        return globalBestSum;
+    }
+
+    int kadaneAlgorithmAlternative(int n, int[] nums) {
+        int globalBestSum = nums[0], localBestSum = nums[0];
+
+        for (int i = 1; i < n; i++) {
+            if (localBestSum >= 0)
+                localBestSum += nums[i];
+            else
+                localBestSum = nums[i];
+
+            globalBestSum = Math.max(globalBestSum, localBestSum);
         }
 
         return globalBestSum;
