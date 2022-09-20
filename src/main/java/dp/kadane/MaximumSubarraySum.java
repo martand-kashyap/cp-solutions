@@ -1,16 +1,21 @@
 package dp.kadane;
 
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 class MaximumSubarraySum {
     public static void main(String[] args) {
         int[] nums = {-2, 1, -3, 4, -1, 2, 1, -5, 4};
         int n = nums.length;
-        MaximumSubarraySum mss = new MaximumSubarraySum();
 
-        String res = "Bruteforce T(n) = O(n^3) : " + mss.bruteforce(n, nums) + "\n" +
-                "Bruteforce Optimized T(n) = O(n^2) : " + mss.bruteforceO(n, nums) + "\n" +
-                "Kadane T(n) = O(n) : " + mss.kadaneAlgorithm(n, nums);
+        MaximumSubarraySum mss = new MaximumSubarraySum();
+        Integer[] maxSubArray = mss.findMaxSumSubArray(n, nums);
+        String res =
+                "Bruteforce T(n) = O(n^3) : " + mss.bruteforce(n, nums) + "\n" +
+                        "Bruteforce Optimized T(n) = O(n^2) : " + mss.bruteforceO(n, nums) + "\n" +
+                        "Kadane T(n) = O(n) : " + mss.kadaneAlgorithm(n, nums) + "\n" +
+                        "Max Sum Subarray : " + Arrays.toString(maxSubArray);
 
         PrintWriter pw = new PrintWriter(System.out);
         pw.println(res);
@@ -46,14 +51,46 @@ class MaximumSubarraySum {
     }
 
     int kadaneAlgorithm(int n, int[] nums) {
-        int maxSubarray = Integer.MIN_VALUE, currentSubarray = 0;
+        int globalBestSum = Integer.MIN_VALUE, localBestSum = 0;
 
         for (int i = 0; i < n; i++) {
-            currentSubarray += nums[i];
-            maxSubarray = Math.max(maxSubarray, currentSubarray);
-            currentSubarray = Math.max(currentSubarray, 0);
+            localBestSum += nums[i];
+            globalBestSum = Math.max(globalBestSum, localBestSum);
+            localBestSum = Math.max(localBestSum, 0);
         }
 
-        return maxSubarray;
+        return globalBestSum;
+    }
+
+    private Integer[] findMaxSumSubArray(int n, int[] nums) {
+        int globalBestSum = Integer.MIN_VALUE, localBestSum = 0, start = -1, end = -1;
+        ArrayList<Integer> res = new ArrayList<>();
+
+        for (int i = 0; i < n; i += 1) {
+            localBestSum += nums[i];
+            if (globalBestSum < localBestSum) {
+                globalBestSum = localBestSum;
+                end = i;
+            }
+            localBestSum = Math.max(localBestSum, 0);
+        }
+
+        start = end;
+        while (start >= 0) {
+            globalBestSum -= nums[start];
+
+            if (globalBestSum == 0)
+                break;
+
+            // Decrement the start index
+            start--;
+        }
+
+
+        for (int i = start; i <= end; i += 1) {
+            res.add(nums[i]);
+        }
+
+        return res.toArray(Integer[]::new);
     }
 }
