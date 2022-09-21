@@ -56,8 +56,8 @@ class MaximumSubarraySum {
 
         for (int i = 0; i < n; i++) {
             localBestSum += nums[i];
-            globalBestSum = Math.max(globalBestSum, localBestSum);
             localBestSum = Math.max(localBestSum, 0);
+            globalBestSum = Math.max(globalBestSum, localBestSum);
         }
 
         return globalBestSum;
