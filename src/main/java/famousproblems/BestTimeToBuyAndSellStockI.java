@@ -1,4 +1,4 @@
-package dp.kadane;
+package famousproblems;
 
 import java.io.PrintWriter;
 import java.util.Arrays;
