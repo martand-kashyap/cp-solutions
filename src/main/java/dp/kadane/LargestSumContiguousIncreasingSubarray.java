@@ -3,6 +3,14 @@ package dp.kadane;
 import java.io.PrintWriter;
 
 class LargestSumContiguousIncreasingSubarray {
+    /*-
+        Given an array of n positive distinct integers.
+        The problem is to find the largest sum of contiguous increasing subarray in O(n) time complexity.
+
+        Input : arr[] = {2, 1, 4, 7, 3, 6}
+        Output : 12
+        Contiguous Increasing subarray {1, 4, 7} = 12
+     */
     public static void main(String[] args) {
         int[] nums = {10, 20, 30, 5, 10, 50};
         LargestSumContiguousIncreasingSubarray maxIncreasingSum = new LargestSumContiguousIncreasingSubarray();
