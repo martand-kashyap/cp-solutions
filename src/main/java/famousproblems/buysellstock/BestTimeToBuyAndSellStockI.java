@@ -1,4 +1,4 @@
-package famousproblems;
+package famousproblems.buysellstock;
 
 import java.io.PrintWriter;
 import java.util.Arrays;
