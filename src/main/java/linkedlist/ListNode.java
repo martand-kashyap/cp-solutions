@@ -1,25 +1,18 @@
 package linkedlist;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor
+@AllArgsConstructor
 class ListNode {
     int val;
     ListNode next;
-
-    ListNode() {
-    }
-
-    ListNode(int val) {
-        this.val = val;
-    }
-
-    ListNode(int val, ListNode next) {
-        this.val = val;
-        this.next = next;
-    }
 }
 
 class LLHelper {
     static String print(ListNode head) {
-        StringBuffer output = new StringBuffer();
+        StringBuilder output = new StringBuilder();
 
         while (head != null) {
             output.append(head.val).append("->");

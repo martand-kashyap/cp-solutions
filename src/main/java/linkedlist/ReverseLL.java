@@ -4,9 +4,9 @@ import java.io.PrintWriter;
 
 class ReverseLL {
     public static void main(String[] args) {
-        ListNode head = new ListNode(10);
-        head.next = new ListNode(20);
-        head.next.next = new ListNode(30);
+        ListNode head = new ListNode(10, null);
+        head.next = new ListNode(20, null);
+        head.next.next = new ListNode(30, null);
 
 
         StringBuffer output = new StringBuffer();
@@ -15,7 +15,7 @@ class ReverseLL {
 
         ReverseLL rev = new ReverseLL();
         head = rev.reverseListR(head);
-//        head = rev.reverseListI(head);
+        //head = rev.reverseListI(head);
 
         output.append("After :\n");
         output.append(LLHelper.print(head));
