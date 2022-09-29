@@ -20,7 +20,7 @@ class BooleanParenthesization {
             N = 7
             S = T|T&F^T
         Output: 4
-        Explaination:
+        Explanation:
             The expression evaluates to true in 4 ways
             ((T|T)&(F^T)),
             (T|(T&(F^T))),

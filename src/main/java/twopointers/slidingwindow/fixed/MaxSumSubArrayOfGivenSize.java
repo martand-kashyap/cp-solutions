@@ -49,13 +49,26 @@ class MaxSumSubArrayOfGivenSize {
 
             //if size(currentWindow) < k, increase the right pointer
             int currentWindowSize = end - start + 1;
-            if (currentWindowSize < k)
+
+            /*-
+             if desired window size of k is not yet achieved
+             => keep increasing the size of the window
+             */
+            if (currentWindowSize < k) {
                 end += 1;
+            }
+
+            /*-
+             if desired window size of k is achieved
+             => we will get the answer
+             */
             else if (currentWindowSize == k) {
                 maxSum = Integer.max(maxSum, subArraySum);
 
+                //subtract the element which is going to leave the window
                 subArraySum -= nums[start];
 
+                //move the sw forward
                 start += 1;
                 end += 1;
             }
@@ -70,11 +83,18 @@ class MaxSumSubArrayOfGivenSize {
         if (n < k)
             return -1;
 
+        //sum the first k elements
         for (int i = 0; i < k; i++)
             subArraySum += nums[i];
 
         for (int i = k; i < n; i++) {
-            subArraySum += nums[i] - nums[i - k];
+            //add the element on right
+            subArraySum += nums[i];
+
+            //remove the element leaving the sliding window
+            subArraySum -= nums[i - k];
+
+            //get the answer
             maxSum = Integer.max(maxSum, subArraySum);
         }
 
