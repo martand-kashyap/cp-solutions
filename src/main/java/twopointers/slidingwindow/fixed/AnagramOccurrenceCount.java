@@ -2,6 +2,7 @@ package twopointers.slidingwindow.fixed;
 
 import java.io.PrintWriter;
 import java.util.Arrays;
+import java.util.HashMap;
 
 public class AnagramOccurrenceCount {
     /*-
@@ -48,7 +49,41 @@ public class AnagramOccurrenceCount {
     }
 
     private int solveSW(String input, String pattern) {
-        int result = 0;
+        int result = 0, left = 0, right = 0, n = input.length(), k = pattern.length();
+
+        HashMap<Character, Integer> charCountMap = new HashMap<>();
+        for (int i = 0; i < k; i++)
+            charCountMap.put(pattern.charAt(i), charCountMap.getOrDefault(pattern.charAt(i), 0) + 1);
+        int uniqueCharInPattern = charCountMap.size();
+
+        while (right < n) {
+            char currentChar = input.charAt(right);
+
+            if (charCountMap.containsKey(currentChar))
+                charCountMap.put(currentChar, charCountMap.get(currentChar) - 1);
+            if (charCountMap.containsKey(currentChar) && charCountMap.get(currentChar) == 0)
+                uniqueCharInPattern -= 1;
+
+            int currentSWSize = right - left + 1;
+            if (currentSWSize < k)
+                right += 1;
+
+            else if (currentSWSize == k) {
+                result += (uniqueCharInPattern == 0) ? 1 : 0;
+
+                if (charCountMap.containsKey(input.charAt(left))) {
+                    charCountMap.put(input.charAt(left), charCountMap.get(input.charAt(left)) + 1);
+
+                    if (charCountMap.get(input.charAt(left)) == 1) {
+                        uniqueCharInPattern += 1;
+                    }
+                }
+
+                //slide the window
+                left += 1;
+                right += 1;
+            }
+        }
 
         return result;
     }
