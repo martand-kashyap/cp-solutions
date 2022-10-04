@@ -27,11 +27,12 @@ class MaxSumSubArrayOfGivenSize {
         if (n < k)
             return -1;
 
-        for (int i = 0; i < n - k; i++) {
+        for (int i = 0; i < n - k + 1; i++) {
             int subArraySum = 0;
             for (int j = i; j < i + k; j++) {
                 subArraySum += nums[j];
-                maxSum = Integer.max(maxSum, subArraySum);
+                if (j - i + 1 == k)
+                    maxSum = Integer.max(maxSum, subArraySum);
             }
         }
 
