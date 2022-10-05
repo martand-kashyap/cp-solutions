@@ -22,10 +22,6 @@ class MaxOfAllSubArraysOfGivenSize {
 
     public static void main(String[] args) {
         int[] nums = {-7, -8, 7, 5, 7, 1, 6, 0};
-//        [1, 3, 1, 2, 0, 5]
-//        3
-//        [-7,-8,7,5,7,1,6,0]
-//        4
         int k = 4;
 
         MaxOfAllSubArraysOfGivenSize mask = new MaxOfAllSubArraysOfGivenSize();
