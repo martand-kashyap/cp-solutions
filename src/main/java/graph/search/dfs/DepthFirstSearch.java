@@ -44,8 +44,8 @@ class DepthFirstSearch {
         String res =
                 "DFS traversal of the graph : " + "\n" +
                         graphRep + "\n" +
-                        "Recursive : " + problem.dfsR(graph, numOfVertices, source) + "\n" +
-                        "Iterative : " + problem.dfsI(graph, numOfVertices, source);
+                        "Recursive T(n) = O(V+E), S(n) = O(1) : " + problem.dfsR(graph, numOfVertices, source) + "\n" +
+                        "Iterative T(n) = O(V+E), S(n) = O(V) : " + problem.dfsI(graph, numOfVertices, source);
 
         PrintWriter pw = new PrintWriter(System.out);
         pw.println(res);
