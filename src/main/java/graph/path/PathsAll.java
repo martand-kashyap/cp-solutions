@@ -31,7 +31,7 @@ class PathsAll {
 
         StringBuilder graphRep = new StringBuilder();
         for (int i = 0; i < numOfVertices; i++)
-            graphRep.append(i).append(" : ").append(graph.adjacentNodes(i)).append("\n");
+            graphRep.append(i).append(" : ").append(graph.successors(i)).append("\n");
 
         PathsAll problem = new PathsAll();
 
@@ -68,7 +68,7 @@ class PathsAll {
         if (!visited[u]) {
             visited[u] = true;
 
-            for (int nextNodes : graph.adjacentNodes(u)) {
+            for (int nextNodes : graph.successors(u)) {
                 currentPath.add(nextNodes);
                 dfs(graph, visited, nextNodes, destination, allPaths, currentPath);
                 currentPath.remove(currentPath.size() - 1);

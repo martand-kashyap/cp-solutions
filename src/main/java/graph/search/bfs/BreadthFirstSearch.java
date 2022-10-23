@@ -39,7 +39,7 @@ class BreadthFirstSearch {
 
         StringBuilder graphRep = new StringBuilder();
         for (int i = 0; i < numOfVertices; i++)
-            graphRep.append(i).append(" : ").append(graph.adjacentNodes(i)).append("\n");
+            graphRep.append(i).append(" : ").append(graph.successors(i)).append("\n");
 
         BreadthFirstSearch problem = new BreadthFirstSearch();
 
@@ -71,7 +71,7 @@ class BreadthFirstSearch {
             visited[u] = true;
             bfsSequence.append(u).append("->");
 
-            for (int v : graph.adjacentNodes(u))
+            for (int v : graph.successors(u))
                 if (!visited[v])
                     bfsQueue.offer(v);
         }

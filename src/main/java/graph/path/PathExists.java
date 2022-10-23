@@ -26,7 +26,7 @@ class PathExists {
 
         StringBuilder graphRep = new StringBuilder();
         for (int i = 0; i < numOfVertices; i++)
-            graphRep.append(i).append(" : ").append(graph.adjacentNodes(i)).append("\n");
+            graphRep.append(i).append(" : ").append(graph.successors(i)).append("\n");
 
         PathExists problem = new PathExists();
 
@@ -54,7 +54,7 @@ class PathExists {
         if (!visited[u]) {
             visited[u] = true;
 
-            for (int nextNode : graph.adjacentNodes(u)) {
+            for (int nextNode : graph.successors(u)) {
                 boolean pathFound = dfs(graph, visited, nextNode, destination);
                 if (pathFound)
                     return true;

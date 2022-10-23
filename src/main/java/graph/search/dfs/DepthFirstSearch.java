@@ -39,7 +39,7 @@ class DepthFirstSearch {
 
         StringBuilder graphRep = new StringBuilder();
         for (int i = 0; i < numOfVertices; i++)
-            graphRep.append(i).append(" : ").append(graph.adjacentNodes(i)).append("\n");
+            graphRep.append(i).append(" : ").append(graph.successors(i)).append("\n");
 
         DepthFirstSearch problem = new DepthFirstSearch();
 
@@ -71,7 +71,7 @@ class DepthFirstSearch {
         visited[u] = true;
         dfsSequence.append(u).append("->");
 
-        for (int v : graph.adjacentNodes(u))
+        for (int v : graph.successors(u))
             if (!visited[v])
                 dfsUtil(graph, v, visited, dfsSequence);
     }
@@ -94,7 +94,7 @@ class DepthFirstSearch {
         visited[u] = ProcessingStatus.PROCESSING;
         dfsSequence.append(u).append("->");
 
-        for (int v : graph.adjacentNodes(u))
+        for (int v : graph.successors(u))
             switch (visited[v]) {
                 case UNPROCESSED:
                     dfsColorsUtil(graph, v, visited, dfsSequence);
@@ -121,7 +121,7 @@ class DepthFirstSearch {
             visited[u] = true;
             dfsSequence.append(u).append("->");
 
-            for (int v : graph.adjacentNodes(u))
+            for (int v : graph.successors(u))
                 if (!visited[v])
                     dfsStack.push(v);
         }
