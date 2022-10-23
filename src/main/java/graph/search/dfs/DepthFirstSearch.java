@@ -2,8 +2,10 @@ package graph.search.dfs;
 
 import com.google.common.graph.GraphBuilder;
 import com.google.common.graph.MutableGraph;
+import graph.ProcessingStatus;
 
 import java.io.PrintWriter;
+import java.util.Arrays;
 import java.util.Stack;
 
 @SuppressWarnings("UnstableApiUsage")
@@ -45,6 +47,7 @@ class DepthFirstSearch {
                 "DFS traversal of the graph : " + "\n" +
                         graphRep + "\n" +
                         "Recursive T(n) = O(V+E), S(n) = O(1) : " + problem.dfsR(graph, numOfVertices, source) + "\n" +
+                        "Recursive [3 colors] T(n) = O(V+E), S(n) = O(1) : " + problem.dfsColorsR(graph, numOfVertices, source) + "\n" +
                         "Iterative T(n) = O(V+E), S(n) = O(V) : " + problem.dfsI(graph, numOfVertices, source);
 
         PrintWriter pw = new PrintWriter(System.out);
@@ -71,6 +74,36 @@ class DepthFirstSearch {
         for (int v : graph.adjacentNodes(u))
             if (!visited[v])
                 dfsUtil(graph, v, visited, dfsSequence);
+    }
+
+    private String dfsColorsR(MutableGraph<Integer> graph, int numOfVertices, int source) {
+        ProcessingStatus[] visited = new ProcessingStatus[numOfVertices];
+        Arrays.fill(visited, ProcessingStatus.UNPROCESSED);
+
+        StringBuilder dfsSequence = new StringBuilder();
+
+        /*Traverser.forGraph(graph).depthFirstPreOrder(source)
+                .forEach(dfsNode -> dfsSequence.append(dfsNode).append("->"));*/
+
+        dfsColorsUtil(graph, source, visited, dfsSequence);
+
+        return dfsSequence.toString();
+    }
+
+    private void dfsColorsUtil(MutableGraph<Integer> graph, int u, ProcessingStatus[] visited, StringBuilder dfsSequence) {
+        visited[u] = ProcessingStatus.PROCESSING;
+        dfsSequence.append(u).append("->");
+
+        for (int v : graph.adjacentNodes(u))
+            switch (visited[v]) {
+                case UNPROCESSED:
+                    dfsColorsUtil(graph, v, visited, dfsSequence);
+                    break;
+                case PROCESSING:
+                    break;
+            }
+
+        visited[u] = ProcessingStatus.PROCESSED;
     }
 
     private String dfsI(MutableGraph<Integer> graph, int vertexCount, int source) {
