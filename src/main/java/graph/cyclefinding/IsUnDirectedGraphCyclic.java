@@ -6,42 +6,46 @@ import graph.ProcessingStatus;
 
 import java.io.PrintWriter;
 import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.Queue;
 
 @SuppressWarnings("UnstableApiUsage")
 class IsUnDirectedGraphCyclic {
     public static void main(String[] args) {
         int numOfVertices = 5;
-        //int numOfVertices = 7;
+        // int numOfVertices = 7;
 
         MutableGraph<Integer> graph = GraphBuilder.undirected().build();
 
-        //add vertices
+        // add vertices
         for (int i = 0; i < numOfVertices; i += 1)
             graph.addNode(i);
 
-        //add edges
+        // add edges
         graph.putEdge(0, 4);
         graph.putEdge(1, 2);
         graph.putEdge(1, 4);
         graph.putEdge(2, 3);
         graph.putEdge(3, 4);
 
-        /*graph.putEdge(0, 1);
-        graph.putEdge(0, 2);
-        graph.putEdge(1, 0);
-        graph.putEdge(1, 2);
-        graph.putEdge(1, 3);
-        graph.putEdge(2, 0);
-        graph.putEdge(2, 1);
-        graph.putEdge(2, 4);
-        graph.putEdge(3, 1);
-        graph.putEdge(3, 4);
-        graph.putEdge(4, 2);
-        graph.putEdge(4, 3);
-        graph.putEdge(4, 5);
-        graph.putEdge(5, 4);
-        graph.putEdge(5, 6);
-        graph.putEdge(6, 5);*/
+        /*
+         * graph.putEdge(0, 1);
+         * graph.putEdge(0, 2);
+         * graph.putEdge(1, 0);
+         * graph.putEdge(1, 2);
+         * graph.putEdge(1, 3);
+         * graph.putEdge(2, 0);
+         * graph.putEdge(2, 1);
+         * graph.putEdge(2, 4);
+         * graph.putEdge(3, 1);
+         * graph.putEdge(3, 4);
+         * graph.putEdge(4, 2);
+         * graph.putEdge(4, 3);
+         * graph.putEdge(4, 5);
+         * graph.putEdge(5, 4);
+         * graph.putEdge(5, 6);
+         * graph.putEdge(6, 5);
+         */
 
         StringBuilder graphRep = new StringBuilder();
         for (int i = 0; i < numOfVertices; i++)
@@ -49,11 +53,11 @@ class IsUnDirectedGraphCyclic {
 
         IsUnDirectedGraphCyclic problem = new IsUnDirectedGraphCyclic();
 
-        String res =
-                "The undirected graph : " + "\n" +
-                        graphRep + "\n" +
-                        "DFS recursive \nT(n) = O(V+E), S(n) = O(1) : " + (problem.dfsR(graph, numOfVertices) ? "has a cycle" : "does not have a cycle") + "\n" +
-                        "DFS recursive [3 colors impl] \nT(n) = O(V+E), S(n) = O(1) : " + (problem.dfsColorsR(graph, numOfVertices) ? "has a cycle" : "does not have a cycle");
+        String res = "The undirected graph : " + "\n" +
+                graphRep + "\n" +
+                "DFS recursive \nT(n) = O(V+E), S(n) = O(1) : " + (problem.dfsR(graph, numOfVertices) ? "has a cycle" : "does not have a cycle") + "\n\n" +
+                "DFS recursive [3 colors impl] \nT(n) = O(V+E), S(n) = O(1) : " + (problem.dfsColorsR(graph, numOfVertices) ? "has a cycle" : "does not have a cycle") + "\n\n" +
+                "BFS \nT(n) = O(V+E), S(n) = O(V) : " + (problem.bfs(graph) ? "has a cycle" : "does not have a cycle");
 
         PrintWriter pw = new PrintWriter(System.out);
         pw.println(res);
@@ -112,6 +116,42 @@ class IsUnDirectedGraphCyclic {
                 return true;
             } else if (dfsUtil(graph, v, visited, u)) {
                 return true;
+            }
+        }
+
+        return false;
+    }
+
+    private boolean bfs(MutableGraph<Integer> graph) {
+        boolean[] visited = new boolean[graph.nodes().size()];
+
+        for (int u : graph.nodes())
+            if (!visited[u] && bfsUtil(graph, u, visited)) {
+                return true;
+            }
+
+        return false;
+    }
+
+    private boolean bfsUtil(MutableGraph<Integer> graph, int source, boolean[] visited) {
+        int[] ancestors = new int[graph.nodes().size()];
+        Queue<Integer> queue = new LinkedList<>();
+        Arrays.fill(ancestors, -1);
+
+        queue.offer(source);
+
+        while (!queue.isEmpty()) {
+            int u = queue.peek();
+//            int p = ancestors[u];
+
+            for (int v : graph.successors(u)) {
+                if (!visited[v]) {
+                    visited[v] = true;
+                    queue.offer(v);
+                    ancestors[v] = u;
+                } else if (ancestors[u] != v) {
+                    return true;
+                }
             }
         }
 
