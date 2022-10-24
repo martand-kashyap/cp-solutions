@@ -10,7 +10,7 @@ import java.util.Arrays;
 @SuppressWarnings("UnstableApiUsage")
 class IsUnDirectedGraphCyclic {
     public static void main(String[] args) {
-        int numOfVertices = 4;
+        int numOfVertices = 5;
         //int numOfVertices = 7;
 
         MutableGraph<Integer> graph = GraphBuilder.undirected().build();
@@ -19,10 +19,12 @@ class IsUnDirectedGraphCyclic {
         for (int i = 0; i < numOfVertices; i += 1)
             graph.addNode(i);
 
-
         //add edges
+        graph.putEdge(0, 4);
         graph.putEdge(1, 2);
+        graph.putEdge(1, 4);
         graph.putEdge(2, 3);
+        graph.putEdge(3, 4);
 
         /*graph.putEdge(0, 1);
         graph.putEdge(0, 2);
@@ -50,7 +52,8 @@ class IsUnDirectedGraphCyclic {
         String res =
                 "The undirected graph : " + "\n" +
                         graphRep + "\n" +
-                        "DFS recursive [3 colors] T(n) = O(V+E), S(n) = O(1) : " + (problem.dfsColorsR(graph, numOfVertices) ? "has a cycle" : "does not have a cycle");
+                        "DFS recursive \nT(n) = O(V+E), S(n) = O(1) : " + (problem.dfsR(graph, numOfVertices) ? "has a cycle" : "does not have a cycle") + "\n" +
+                        "DFS recursive [3 colors impl] \nT(n) = O(V+E), S(n) = O(1) : " + (problem.dfsColorsR(graph, numOfVertices) ? "has a cycle" : "does not have a cycle");
 
         PrintWriter pw = new PrintWriter(System.out);
         pw.println(res);
@@ -85,6 +88,33 @@ class IsUnDirectedGraphCyclic {
         }
 
         visited[u] = ProcessingStatus.PROCESSED;
+        return false;
+    }
+
+    private boolean dfsR(MutableGraph<Integer> graph, int numOfVertices) {
+        boolean[] visited = new boolean[numOfVertices];
+
+        for (int u : graph.nodes())
+            if (!visited[u] && dfsUtil(graph, u, visited, -1))
+                return true;
+
+        return false;
+    }
+
+    private boolean dfsUtil(MutableGraph<Integer> graph, int u, boolean[] visited, int parent) {
+        visited[u] = true;
+
+        for (int v : graph.successors(u)) {
+            if (v == parent) {
+                continue;
+            }
+            if (visited[v]) {
+                return true;
+            } else if (dfsUtil(graph, v, visited, u)) {
+                return true;
+            }
+        }
+
         return false;
     }
 }
