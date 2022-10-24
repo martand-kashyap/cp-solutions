@@ -6,6 +6,8 @@ import graph.ProcessingStatus;
 
 import java.io.PrintWriter;
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 @SuppressWarnings("UnstableApiUsage")
 class IsDirectedGraphCyclic {
@@ -49,6 +51,7 @@ class IsDirectedGraphCyclic {
         String res =
                 "The directed graph : " + "\n" +
                         graphRep + "\n" +
+                        "DFS recursive T(n) = O(V+E), S(n) = O(1) : " + (problem.dfsR(graph, numOfVertices) ? "has a cycle" : "does not have a cycle") + "\n" +
                         "DFS recursive [3 colors] T(n) = O(V+E), S(n) = O(1) : " + (problem.dfsColorsR(graph, numOfVertices) ? "has a cycle" : "does not have a cycle");
 
         PrintWriter pw = new PrintWriter(System.out);
@@ -81,6 +84,35 @@ class IsDirectedGraphCyclic {
             }
 
         visited[u] = ProcessingStatus.PROCESSED;
+        return false;
+    }
+
+    private boolean dfsR(MutableGraph<Integer> graph, int numOfVertices) {
+        boolean[] visited = new boolean[numOfVertices];
+        Set<Integer> ancestors = new HashSet<>();
+
+        for (int u : graph.nodes())
+            if (!visited[u] && dfsUtil(graph, u, visited, ancestors))
+                return true;
+
+        return false;
+    }
+
+    private boolean dfsUtil(MutableGraph<Integer> graph, int u, boolean[] visited, Set<Integer> ancestors) {
+        visited[u] = true;
+        ancestors.add(u);
+
+        for (int v : graph.successors(u)) {
+            if (!visited[v]) {
+                if (dfsUtil(graph, v, visited, ancestors)) {
+                    return true;
+                } else if (ancestors.contains(v)) {
+                    return true;
+                }
+            }
+        }
+
+        ancestors.remove(u);
         return false;
     }
 }
