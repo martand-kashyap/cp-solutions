@@ -139,10 +139,10 @@ class IsUnDirectedGraphCyclic {
         Arrays.fill(ancestors, -1);
 
         queue.offer(source);
+        visited[source] = true;
 
         while (!queue.isEmpty()) {
-            int u = queue.peek();
-//            int p = ancestors[u];
+            int u = queue.poll();
 
             for (int v : graph.successors(u)) {
                 if (!visited[v]) {
