@@ -4,9 +4,7 @@ import com.google.common.graph.GraphBuilder;
 import com.google.common.graph.MutableGraph;
 
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 @SuppressWarnings("UnstableApiUsage")
 class PathsAll {
@@ -38,7 +36,8 @@ class PathsAll {
         String res =
                 "All paths from " + source + " to " + destination + " in the graph : " + "\n" +
                         graphRep + "\n" +
-                        "DFS approach T(n) = O(V+E), S(n) = O(V) : " + problem.solveDFS(graph, numOfVertices, source, destination);
+                        "DFS approach T(n) = O(2^V.V), S(n) = O(V) : " + problem.solveDFS(graph, numOfVertices, source, destination) + "\n" +
+                        "BFS approach T(n) = O(2^V.V), S(n) = O(V) : " + problem.solveBFS(graph, source, destination);
 
         PrintWriter pw = new PrintWriter(System.out);
         pw.println(res);
@@ -76,5 +75,36 @@ class PathsAll {
 
             visited[u] = false;
         }
+    }
+
+    private List<List<Integer>> solveBFS(MutableGraph<Integer> graph, int source, int destination) {
+        List<List<Integer>> allPaths = new ArrayList<>();
+
+        //queue to store the explored paths
+        Queue<List<Integer>> queue = new LinkedList<>();
+        List<Integer> srcPath = new ArrayList<>();
+        srcPath.add(source);
+        queue.offer(srcPath);
+
+        while (!queue.isEmpty()) {
+            List<Integer> currPath = queue.peek();
+
+            //get the last node on the current path
+            int u = currPath.get(currPath.size() - 1);
+
+            if (u == destination)
+                allPaths.add(new ArrayList<>(currPath));
+
+            for (int v : graph.successors(u)) {
+                if (!currPath.contains(v)) {
+                    List<Integer> newPath = new ArrayList<>(currPath);
+                    newPath.add(v);
+                    queue.add(new ArrayList<>(newPath));
+                }
+            }
+            queue.poll();
+        }
+
+        return allPaths;
     }
 }
