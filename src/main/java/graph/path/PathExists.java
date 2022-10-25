@@ -5,6 +5,8 @@ import com.google.common.graph.MutableGraph;
 
 import java.io.PrintWriter;
 import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.Queue;
 
 @SuppressWarnings("UnstableApiUsage")
 class PathExists {
@@ -33,7 +35,8 @@ class PathExists {
         String res =
                 "A path from " + source + " to " + destination + " in the graph : " + "\n" +
                         graphRep + "\n" +
-                        "DFS approach T(n) = O(V+E), S(n) = O(V) : " + (problem.solveDFS(graph, numOfVertices, source, destination) ? " exists." : " does not exist.");
+                        "DFS approach T(n) = O(V+E), S(n) = O(V) : " + (problem.solveDFS(graph, numOfVertices, source, destination) ? "exists." : "does not exist.") + "\n" +
+                        "BFS approach T(n) = O(V+E), S(n) = O(V) : " + (problem.solveBFS(graph, numOfVertices, source, destination) ? "exists." : "does not exist.");
 
         PrintWriter pw = new PrintWriter(System.out);
         pw.println(res);
@@ -59,6 +62,31 @@ class PathExists {
                 if (pathFound)
                     return true;
             }
+        }
+
+        return false;
+    }
+
+    private boolean solveBFS(MutableGraph<Integer> graph, int numOfVertices, int source, int destination) {
+        boolean[] visited = new boolean[numOfVertices];
+        Arrays.fill(visited, false);
+
+        Queue<Integer> queue = new LinkedList<>();
+        queue.offer(source);
+
+        while (!queue.isEmpty()) {
+            int u = queue.poll();
+
+            if (u == destination)
+                return true;
+
+            if (visited[u])
+                continue;
+
+            visited[u] = true;
+            for (int v : graph.successors(u))
+                if (!visited[v])
+                    queue.offer(v);
         }
 
         return false;
