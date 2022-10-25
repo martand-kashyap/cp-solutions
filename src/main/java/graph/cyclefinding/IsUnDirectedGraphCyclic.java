@@ -57,8 +57,9 @@ class IsUnDirectedGraphCyclic {
                 graphRep + "\n" +
                 "DFS recursive \nT(n) = O(V+E), S(n) = O(1) : " + (problem.dfsR(graph, numOfVertices) ? "has a cycle" : "does not have a cycle") + "\n\n" +
                 "DFS recursive [3 colors impl] \nT(n) = O(V+E), S(n) = O(1) : " + (problem.dfsColorsR(graph, numOfVertices) ? "has a cycle" : "does not have a cycle") + "\n\n" +
-                "BFS \nT(n) = O(V+E), S(n) = O(V) : " + (problem.bfs(graph) ? "has a cycle" : "does not have a cycle");
-
+                "BFS \nT(n) = O(V+E), S(n) = O(V) : " + (problem.bfs(graph) ? "has a cycle" : "does not have a cycle") + "\n\n" +
+                "BFS Alternative Impl\nT(n) = O(V+E), S(n) = O(V) : " + (problem.bfsAlt(graph) ? "has a cycle" : "does not have a cycle");
+        
         PrintWriter pw = new PrintWriter(System.out);
         pw.println(res);
         pw.close();
@@ -153,6 +154,36 @@ class IsUnDirectedGraphCyclic {
                     return true;
                 }
             }
+        }
+
+        return false;
+    }
+
+    private boolean bfsAlt(MutableGraph<Integer> graph) {
+        boolean[] visited = new boolean[graph.nodes().size()];
+
+        for (int u : graph.nodes())
+            if (!visited[u] && bfsAltUtil(graph, u, visited)) {
+                return true;
+            }
+
+        return false;
+    }
+
+    private boolean bfsAltUtil(MutableGraph<Integer> graph, int source, boolean[] visited) {
+        Queue<Integer> queue = new LinkedList<>();
+        queue.offer(source);
+
+        while (!queue.isEmpty()) {
+            int u = queue.poll();
+
+            if (visited[u])
+                return true;
+
+            visited[u] = true;
+            for (int v : graph.successors(u))
+                if (!visited[v])
+                    queue.offer(v);
         }
 
         return false;
