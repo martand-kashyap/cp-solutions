@@ -122,8 +122,7 @@ class DepthFirstSearch {
             dfsSequence.append(u).append("->");
 
             for (int v : graph.successors(u))
-                if (!visited[v])
-                    dfsStack.push(v);
+                dfsStack.push(v);
         }
 
         return dfsSequence.toString();

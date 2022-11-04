@@ -72,8 +72,7 @@ class BreadthFirstSearch {
             bfsSequence.append(u).append("->");
 
             for (int v : graph.successors(u))
-                if (!visited[v])
-                    bfsQueue.offer(v);
+                bfsQueue.offer(v);
         }
 
         return bfsSequence.toString();
