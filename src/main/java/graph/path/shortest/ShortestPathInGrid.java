@@ -39,16 +39,11 @@ class ShortestPathInGrid {
         String res =
                 "A path from (0, 0) to (" + (grid.length - 1) + ", " + (grid[0].length - 1) + ") in the grid : " + "\n" +
                         graphRep + "\n" +
-                        "DFS approach T(n) = O(V+E), S(n) = O(V) : " + problem.solveDFS(grid) + "\n" +
                         "BFS approach T(n) = O(V+E), S(n) = O(V) : " + problem.solveBFS(grid);
 
         PrintWriter pw = new PrintWriter(System.out);
         pw.println(res);
         pw.close();
-    }
-
-    private int solveDFS(int[][] grid) {
-        return -1;
     }
 
     private int solveBFS(int[][] grid) {
@@ -82,7 +77,7 @@ class ShortestPathInGrid {
                     int nx = x + directions[d][0];
                     int ny = y + directions[d][1];
 
-                    if (0 <= nx && nx < m && 0 <= ny && ny < n && !visited[nx][ny]) {
+                    if (0 <= nx && nx < m && 0 <= ny && ny < n && grid[nx][ny] == 0 && !visited[nx][ny]) {
                         visited[nx][ny] = true;
                         queue.add(new XYPair(nx, ny));
                     }
