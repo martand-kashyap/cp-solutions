@@ -2,16 +2,20 @@ package tree.binary.traversal;
 
 import tree.binary.MyTreeNode;
 
+import java.io.PrintWriter;
+import java.util.*;
+
 class ZigZagTraversal {
     public static void main(String[] args) {
-        /**
-         * Sample tree
-         *          15
-         *        /   \
-         *      10     20
-         *     /  \   /  \
-         *    8   12 16  25
-         */
+        /*-
+        Sample tree
+
+                   15
+                 /   \
+               10     20
+              /  \   /  \
+             8   12 16  25
+        */
         MyTreeNode root = new MyTreeNode(15);
         root.left = new MyTreeNode(10);
         root.right = new MyTreeNode(20);
@@ -20,39 +24,48 @@ class ZigZagTraversal {
         root.right.left = new MyTreeNode(16);
         root.right.right = new MyTreeNode(25);
 
-        zigZagTraversal(root);
+        ZigZagTraversal problem = new ZigZagTraversal();
+        String res = "Recursive (DFS) T(n) = O(n) : " + problem.spiralR(root) + "\n" +
+                "Iterative (BFS) T(n) = O(n) : " + problem.spiralI(root);
+
+        PrintWriter pw = new PrintWriter(System.out);
+        pw.println(res);
+        pw.close();
     }
 
-    private static void zigZagTraversal(MyTreeNode root) {
+    private String spiralR(MyTreeNode root) {
+        List<Integer> result = new ArrayList<>();
+
         int h = height(root);
-        boolean isRev = false;
+        boolean rightToLeft = false;
 
         for (int i = 0; i < h; i++) {
-            printNodesAtLevel(root, i, isRev);
-            isRev = !isRev;
+            printNodesAtLevel(root, i, rightToLeft, result);
+            rightToLeft = !rightToLeft;
         }
+
+        return result.toString();
     }
 
-    private static void printNodesAtLevel(MyTreeNode root, int i, boolean isRev) {
+    private void printNodesAtLevel(MyTreeNode root, int i, boolean rightToLeft, List<Integer> result) {
         if (root == null)
             return;
 
         if (i == 0) {
-            System.out.print(root.val + " ");
+            result.add(root.val);
             return;
         }
 
-        if(!isRev) {
-            printNodesAtLevel(root.left, i - 1, isRev);
-            printNodesAtLevel(root.right, i - 1, isRev);
-        }
-        else {
-            printNodesAtLevel(root.right, i - 1, isRev);
-            printNodesAtLevel(root.left, i - 1, isRev);
+        if (rightToLeft) {
+            printNodesAtLevel(root.right, i - 1, rightToLeft, result);
+            printNodesAtLevel(root.left, i - 1, rightToLeft, result);
+        } else {
+            printNodesAtLevel(root.left, i - 1, rightToLeft, result);
+            printNodesAtLevel(root.right, i - 1, rightToLeft, result);
         }
     }
 
-    private static int height(MyTreeNode root) {
+    private int height(MyTreeNode root) {
         if (root == null)
             return 0;
 
@@ -60,5 +73,40 @@ class ZigZagTraversal {
         int r = height(root.right);
 
         return 1 + Math.max(l, r);
+    }
+
+    private String spiralI(MyTreeNode root) {
+        List<Integer> result = new ArrayList<>();
+
+        if (root == null)
+            return result.toString();
+
+        boolean rightToLeft = false;
+        Queue<MyTreeNode> q = new LinkedList<>();
+        q.offer(root);
+
+        while (!q.isEmpty()) {
+            int levelSize = q.size();
+            List<Integer> level = new ArrayList<>();
+
+            for (int l = 0; l < levelSize; l += 1) {
+                MyTreeNode t = q.poll();
+
+                level.add(t.val);
+
+                if (t.left != null)
+                    q.offer(t.left);
+                if (t.right != null)
+                    q.offer(t.right);
+            }
+            if (rightToLeft)
+                Collections.reverse(level);
+
+            rightToLeft = !rightToLeft;
+
+            result.addAll(level);
+        }
+
+        return result.toString();
     }
 }
