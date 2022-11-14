@@ -2,21 +2,23 @@ package tree.binary.traversal;
 
 import tree.binary.MyTreeNode;
 
+import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Stack;
 
 class BoundaryTraversal {
     public static void main(String[] args) {
-        /**
-         * Sample tree
-         *               15
-         *             /    \
-         *           10      20
-         *          /  \    /  \
-         *         8   12  16   25
-         *            /      \
-         *           7       90
-         */
+        /*-
+          Sample tree
+                        15
+                      /    \
+                    10      20
+                   /  \    /  \
+                  8   12  16   25
+                     /      \
+                    7       90
+        */
         MyTreeNode root = new MyTreeNode(15);
         root.left = new MyTreeNode(10);
         root.right = new MyTreeNode(20);
@@ -29,29 +31,31 @@ class BoundaryTraversal {
         root.right.right = new MyTreeNode(25);
         root.right.left.right = new MyTreeNode(90);
 
-        ArrayList<Integer> traversal = new ArrayList<>();
-        boundaryTraversalR(root, traversal);
-        System.out.println("Recursive: " + traversal);
+        BoundaryTraversal problem = new BoundaryTraversal();
+        String res = "Recursive (DFS) T(n) = O(n) : " + problem.boundaryTraversalR(root) + "\n" +
+                "Iterative (BFS) T(n) = O(n) : " + problem.boundaryTraversalI(root);
 
-        traversal.clear();
-        boundaryTraversalI(root, traversal);
-        System.out.println("Iterative: " + traversal);
+        PrintWriter pw = new PrintWriter(System.out);
+        pw.println(res);
+        pw.close();
     }
 
-    private static void boundaryTraversalI(MyTreeNode root, ArrayList<Integer> traversal) {
+    private String boundaryTraversalI(MyTreeNode root) {
+        List<Integer> result = new ArrayList<>();
+
         if (root == null)
-            return;
+            return result.toString();
 
         //add the root node
         if (root.left != null && root.right != null)
-            traversal.add(root.val);
+            result.add(root.val);
 
         //left boundary
         MyTreeNode c = root.left;
         while (c != null) {
             //add non-leaf nodes
             if (c.left != null && c.right != null)
-                traversal.add(c.val);
+                result.add(c.val);
 
             if (c.left == null)
                 c = c.right;
@@ -60,7 +64,7 @@ class BoundaryTraversal {
         }
 
         //leafs
-        leafsR(root, traversal);
+        leafsR(root, result);
 
         //right boundary
         Stack<Integer> s = new Stack<>();
@@ -77,28 +81,34 @@ class BoundaryTraversal {
         }
 
         while (!s.empty())
-            traversal.add(s.pop());
+            result.add(s.pop());
+
+        return result.toString();
     }
 
-    private static void boundaryTraversalR(MyTreeNode root, ArrayList<Integer> traversal) {
+    private String boundaryTraversalR(MyTreeNode root) {
+        List<Integer> result = new ArrayList<>();
+
         if (root == null)
-            return;
+            return result.toString();
 
         //print the root
-        traversal.add(root.val);
+        result.add(root.val);
 
         //left boundary, top-down fashion;
-        leftBoundaryR(root.left, traversal);
+        leftBoundaryR(root.left, result);
 
         //leaf nodes
-        leafsR(root.left, traversal);
-        leafsR(root.right, traversal);
+        leafsR(root.left, result);
+        leafsR(root.right, result);
 
         //right boundary, bottom-up
-        rightBoundaryR(root.right, traversal);
+        rightBoundaryR(root.right, result);
+
+        return result.toString();
     }
 
-    private static void leftBoundaryR(MyTreeNode root, ArrayList<Integer> traversal) {
+    private void leftBoundaryR(MyTreeNode root, List<Integer> traversal) {
         if (root == null || (root.left == null && root.right == null))
             return;
 
@@ -110,7 +120,7 @@ class BoundaryTraversal {
             leftBoundaryR(root.left, traversal);
     }
 
-    private static void rightBoundaryR(MyTreeNode root, ArrayList<Integer> traversal) {
+    private void rightBoundaryR(MyTreeNode root, List<Integer> traversal) {
         if (root == null || (root.left == null && root.right == null))
             return;
 
@@ -122,7 +132,7 @@ class BoundaryTraversal {
         traversal.add(root.val);
     }
 
-    private static void leafsR(MyTreeNode root, ArrayList<Integer> traversal) {
+    private void leafsR(MyTreeNode root, List<Integer> traversal) {
         if (root == null)
             return;
 
