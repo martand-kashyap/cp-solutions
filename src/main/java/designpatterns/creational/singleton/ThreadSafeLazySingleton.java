@@ -3,18 +3,28 @@ package designpatterns.creational.singleton;
 import java.io.Serial;
 import java.io.Serializable;
 
-class ThreadSafeLazySingleton implements Serializable {
+class ThreadSafeLazySingleton implements Serializable, Cloneable {
     private static volatile ThreadSafeLazySingleton threadSafeLazySingletonInstance;
 
-    private ThreadSafeLazySingleton() {
+    private ThreadSafeLazySingleton() throws InstantiationException {
+        if (threadSafeLazySingletonInstance != null) {
+            throw new InstantiationException("saving from Reflection");
+        }
     }
 
+    //handle serialization
     @Serial
     private Object readResolve() {
         return threadSafeLazySingletonInstance;
     }
 
-    public static synchronized ThreadSafeLazySingleton getInstance() {
+    //handle cloning
+    @Override
+    protected Object clone() {
+        return threadSafeLazySingletonInstance;
+    }
+
+    public static synchronized ThreadSafeLazySingleton getInstance() throws InstantiationException {
         if (threadSafeLazySingletonInstance == null) {
             synchronized (ThreadSafeLazySingleton.class) {
                 if (threadSafeLazySingletonInstance == null) {

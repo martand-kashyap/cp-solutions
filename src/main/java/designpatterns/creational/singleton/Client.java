@@ -1,7 +1,7 @@
 package designpatterns.creational.singleton;
 
 class Client {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InstantiationException {
         // eager singleton
         EagerSingleton instance1 = EagerSingleton.getInstance();
         EagerSingleton instance2 = EagerSingleton.getInstance();
