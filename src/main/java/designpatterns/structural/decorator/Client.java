@@ -1,16 +1,16 @@
 package designpatterns.structural.decorator;
 
-class DecoratorClient {
+class Client {
     public static void main(String[] args) {
         Pizza pizza = new ThickCrustPizza();
         System.out.println(pizza.getDescription());
         System.out.println(pizza.getPrice());
 
-        Pepperoni pepperoni = new Pepperoni(pizza);
+        PepperoniPizza pepperoni = new PepperoniPizza(pizza);
         System.out.println(pepperoni.getDescription());
         System.out.println(pepperoni.getPrice());
 
-        Pepperoni doublePepperoni = new Pepperoni(pepperoni);
+        PepperoniPizza doublePepperoni = new PepperoniPizza(pepperoni);
         System.out.println(doublePepperoni.getDescription());
         System.out.println(doublePepperoni.getPrice());
     }

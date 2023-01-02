@@ -2,11 +2,10 @@ package designpatterns.structural.decorator;
 
 import java.math.BigDecimal;
 
-class Pepperoni extends PizzaIngredient {
+class PepperoniPizza implements Pizza {
     private final Pizza pizza;
 
-    public Pepperoni(Pizza pizza) {
-        super();
+    public PepperoniPizza(Pizza pizza) {
         this.pizza = pizza;
     }
 
@@ -19,5 +18,4 @@ class Pepperoni extends PizzaIngredient {
     public BigDecimal getPrice() {
         return this.pizza.getPrice().add(new BigDecimal(2));
     }
-
 }

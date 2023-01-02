@@ -2,16 +2,20 @@ package designpatterns.structural.decorator;
 
 import java.math.BigDecimal;
 
-class ThickCrustPizza extends Pizza {
+class ThickCrustPizza implements Pizza {
+    private final String description;
 
     public ThickCrustPizza() {
-        super();
         this.description = "Thick Crust Pizza";
     }
 
     @Override
-    public BigDecimal getPrice() {
-        return new BigDecimal(15.0);
+    public String getDescription() {
+        return this.description;
     }
 
+    @Override
+    public BigDecimal getPrice() {
+        return new BigDecimal("15.0");
+    }
 }
