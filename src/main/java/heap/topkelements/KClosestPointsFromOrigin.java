@@ -1,4 +1,4 @@
-package heap;
+package heap.topkelements;
 
 import lombok.AllArgsConstructor;
 import lombok.ToString;

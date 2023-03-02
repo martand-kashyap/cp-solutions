@@ -1,4 +1,4 @@
-package heap;
+package heap.kwaymerge;
 
 import lombok.AllArgsConstructor;
 import lombok.ToString;
