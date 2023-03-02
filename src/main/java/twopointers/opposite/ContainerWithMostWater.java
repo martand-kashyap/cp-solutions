@@ -19,7 +19,8 @@ class ContainerWithMostWater {
         int[] heights = {1, 8, 6, 2, 5, 4, 8, 3, 7};
 
         ContainerWithMostWater problem = new ContainerWithMostWater();
-        String res = "Max water that can be contained in the heights : \n" + Arrays.toString(heights) + "\n" +
+        String res = "Max water that can be contained in the heights : \n" +
+                Arrays.toString(heights) + "\n" +
                 "2 pointers : " + problem.solve2P(heights);
 
         PrintWriter pw = new PrintWriter(System.out);
