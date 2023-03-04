@@ -5,18 +5,18 @@ import java.util.Arrays;
 
 class MaxSumSubArrayOfSizeK {
     /*-
-    Given an array of integers and a number k, find the maximum sum of a subarray of size k.
+        Given an array of integers and a number k, find the maximum sum of a subarray of size k.
 
-    Input  : arr[] = {100, 200, 300, 400},  k = 2
-    Output : 700
+        Input  : arr[] = {100, 200, 300, 400},  k = 2
+        Output : 700
 
-    Input  : arr[] = {1, 4, 2, 10, 23, 3, 1, 0, 20}, k = 4
-    Output : 39
-    Explanation: We get maximum sum by adding subarray {4, 2, 10, 23} of size 4.
+        Input  : arr[] = {1, 4, 2, 10, 23, 3, 1, 0, 20}, k = 4
+        Output : 39
+        Explanation: We get maximum sum by adding subarray {4, 2, 10, 23} of size 4.
 
-    Input  : arr[] = {2, 3}, k = 3
-    Output : Invalid
-    Explanation: There is no subarray of size 3 as size of whole array is 2.
+        Input  : arr[] = {2, 3}, k = 3
+        Output : Invalid
+        Explanation: There is no subarray of size 3 as size of whole array is 2.
      */
     public static void main(String[] args) {
         int[] nums = {2, 1, 5, 1, 3, 2};
@@ -24,11 +24,10 @@ class MaxSumSubArrayOfSizeK {
 
         MaxSumSubArrayOfSizeK problem = new MaxSumSubArrayOfSizeK();
 
-        String res = "Max of all sums in sub-arrays of size " + k + "\n" +
-                "in the given array\n" + Arrays.toString(nums) + "\n\n" +
-                "Bruteforce T(n) = O(n*k) : " + problem.bruteforce(nums, k) + "\n" +
-                "Sliding Window T(n) = O(n) : " + problem.slidingWindowFixed(nums, k) + "\n" +
-                "Sliding Window [alternative implementation] T(n) = O(n) : " + problem.slidingWindowFixedAltImpl(nums, k);
+        String res = "Max (sums of sub-arrays of size " + k + ") in the given array\n" + Arrays.toString(nums) + "\n\n" +
+                "Bruteforce : " + problem.bruteforce(nums, k) + "\n" +
+                "Sliding Window : " + problem.slidingWindowFixed(nums, k) + "\n" +
+                "Sliding Window [alternative implementation] : " + problem.slidingWindowFixedAltImpl(nums, k);
 
         PrintWriter pw = new PrintWriter(System.out);
         pw.println(res);
@@ -50,6 +49,7 @@ class MaxSumSubArrayOfSizeK {
             }
         }
 
+        //T(n) = O(n*k)
         return maxSum;
     }
 
@@ -89,6 +89,7 @@ class MaxSumSubArrayOfSizeK {
             }
         }
 
+        //T(n) = O(n)
         return maxSum;
     }
 
@@ -113,6 +114,7 @@ class MaxSumSubArrayOfSizeK {
             maxSum = Integer.max(maxSum, subArraySum);
         }
 
+        //T(n) = O(n)
         return maxSum;
     }
 }
