@@ -3,25 +3,25 @@ package twopointers.slidingwindow.fixed;
 import java.io.PrintWriter;
 import java.util.Arrays;
 
-class MinSumSubArrayOfGivenSize {
+class MinSumSubArrayOfSizeK {
     public static void main(String[] args) {
         int[] nums = {2, 1, 5, 1, 3, 2};
         int k = 3;
 
-        MinSumSubArrayOfGivenSize swf = new MinSumSubArrayOfGivenSize();
+        MinSumSubArrayOfSizeK problem = new MinSumSubArrayOfSizeK();
 
         String res = "Min of all sums in sub-arrays of size " + k + "\n" +
                 "in the given array\n" + Arrays.toString(nums) + "\n\n" +
-                "Bruteforce T(n) = O(n*k) : " + swf.getMinSubArrayOfSizeKB(nums, k) + "\n" +
-                "Sliding Window T(n) = O(n) : " + swf.getMinSubArrayOfSizeSW(nums, k) + "\n" +
-                "Sliding Window [alternative implementation] T(n) = O(n) : " + swf.getMinSubArrayOfSizeSWAlternative(nums, k);
+                "Bruteforce T(n) = O(n*k) : " + problem.bruteforce(nums, k) + "\n" +
+                "Sliding Window T(n) = O(n) : " + problem.slidingWindowFixed(nums, k) + "\n" +
+                "Sliding Window [alternative implementation] T(n) = O(n) : " + problem.slidingWindowFixedAltImpl(nums, k);
 
         PrintWriter pw = new PrintWriter(System.out);
         pw.println(res);
         pw.close();
     }
 
-    private int getMinSubArrayOfSizeKB(int[] nums, int k) {
+    private int bruteforce(int[] nums, int k) {
         int n = nums.length, minSum = Integer.MAX_VALUE;
 
         for (int i = 0; i < n - k + 1; i++) {
@@ -36,7 +36,7 @@ class MinSumSubArrayOfGivenSize {
         return minSum;
     }
 
-    private int getMinSubArrayOfSizeSW(int[] nums, int k) {
+    private int slidingWindowFixed(int[] nums, int k) {
         int n = nums.length, minSum = Integer.MAX_VALUE, subArraySum = 0, i = 0, j = 0;
 
         while (j < n) {
@@ -59,7 +59,7 @@ class MinSumSubArrayOfGivenSize {
         return minSum;
     }
 
-    private int getMinSubArrayOfSizeSWAlternative(int[] nums, int k) {
+    private int slidingWindowFixedAltImpl(int[] nums, int k) {
         int n = nums.length, minSum = Integer.MAX_VALUE, subArraySum = 0;
 
         for (int i = 0; i < k; i++)

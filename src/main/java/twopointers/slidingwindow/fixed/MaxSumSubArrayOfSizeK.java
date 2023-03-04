@@ -3,25 +3,39 @@ package twopointers.slidingwindow.fixed;
 import java.io.PrintWriter;
 import java.util.Arrays;
 
-class MaxSumSubArrayOfGivenSize {
+class MaxSumSubArrayOfSizeK {
+    /*-
+    Given an array of integers and a number k, find the maximum sum of a subarray of size k.
+
+    Input  : arr[] = {100, 200, 300, 400},  k = 2
+    Output : 700
+
+    Input  : arr[] = {1, 4, 2, 10, 23, 3, 1, 0, 20}, k = 4
+    Output : 39
+    Explanation: We get maximum sum by adding subarray {4, 2, 10, 23} of size 4.
+
+    Input  : arr[] = {2, 3}, k = 3
+    Output : Invalid
+    Explanation: There is no subarray of size 3 as size of whole array is 2.
+     */
     public static void main(String[] args) {
         int[] nums = {2, 1, 5, 1, 3, 2};
         int k = 3;
 
-        MaxSumSubArrayOfGivenSize swf = new MaxSumSubArrayOfGivenSize();
+        MaxSumSubArrayOfSizeK problem = new MaxSumSubArrayOfSizeK();
 
         String res = "Max of all sums in sub-arrays of size " + k + "\n" +
                 "in the given array\n" + Arrays.toString(nums) + "\n\n" +
-                "Bruteforce T(n) = O(n*k) : " + swf.getMaxSubArrayOfSizeKB(nums, k) + "\n" +
-                "Sliding Window T(n) = O(n) : " + swf.getMaxSubArrayOfSizeSW(nums, k) + "\n" +
-                "Sliding Window [alternative implementation] T(n) = O(n) : " + swf.getMaxSubArrayOfSizeSWAlternative(nums, k);
+                "Bruteforce T(n) = O(n*k) : " + problem.bruteforce(nums, k) + "\n" +
+                "Sliding Window T(n) = O(n) : " + problem.slidingWindowFixed(nums, k) + "\n" +
+                "Sliding Window [alternative implementation] T(n) = O(n) : " + problem.slidingWindowFixedAltImpl(nums, k);
 
         PrintWriter pw = new PrintWriter(System.out);
         pw.println(res);
         pw.close();
     }
 
-    private int getMaxSubArrayOfSizeKB(int[] nums, int k) {
+    private int bruteforce(int[] nums, int k) {
         int n = nums.length, maxSum = Integer.MIN_VALUE;
 
         if (n < k)
@@ -39,7 +53,7 @@ class MaxSumSubArrayOfGivenSize {
         return maxSum;
     }
 
-    private int getMaxSubArrayOfSizeSW(int[] nums, int k) {
+    private int slidingWindowFixed(int[] nums, int k) {
         int n = nums.length, maxSum = Integer.MIN_VALUE, subArraySum = 0, start = 0, end = 0;
 
         if (n < k)
@@ -78,7 +92,7 @@ class MaxSumSubArrayOfGivenSize {
         return maxSum;
     }
 
-    private int getMaxSubArrayOfSizeSWAlternative(int[] nums, int k) {
+    private int slidingWindowFixedAltImpl(int[] nums, int k) {
         int n = nums.length, maxSum = Integer.MIN_VALUE, subArraySum = 0;
 
         if (n < k)
