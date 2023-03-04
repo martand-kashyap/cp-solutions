@@ -12,9 +12,9 @@ class MinSumSubArrayOfSizeK {
 
         String res = "Min of all sums in sub-arrays of size " + k + "\n" +
                 "in the given array\n" + Arrays.toString(nums) + "\n\n" +
-                "Bruteforce T(n) = O(n*k) : " + problem.bruteforce(nums, k) + "\n" +
-                "Sliding Window T(n) = O(n) : " + problem.slidingWindowFixed(nums, k) + "\n" +
-                "Sliding Window [alternative implementation] T(n) = O(n) : " + problem.slidingWindowFixedAltImpl(nums, k);
+                "Bruteforce : " + problem.bruteforce(nums, k) + "\n" +
+                "Sliding Window : " + problem.slidingWindowFixed(nums, k) + "\n" +
+                "Sliding Window [alternative implementation] : " + problem.slidingWindowFixedAltImpl(nums, k);
 
         PrintWriter pw = new PrintWriter(System.out);
         pw.println(res);
@@ -33,6 +33,7 @@ class MinSumSubArrayOfSizeK {
             }
         }
 
+        //T(n) = O(n*k)
         return minSum;
     }
 
@@ -56,6 +57,7 @@ class MinSumSubArrayOfSizeK {
             }
         }
 
+        //T(n) = O(n)
         return minSum;
     }
 
@@ -70,6 +72,7 @@ class MinSumSubArrayOfSizeK {
             minSum = Integer.min(minSum, subArraySum);
         }
 
+        //T(n) = O(n)
         return minSum;
     }
 }
