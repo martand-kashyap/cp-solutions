@@ -3,7 +3,8 @@ package twopointers.slidingwindow.fixed;
 import java.io.PrintWriter;
 import java.util.*;
 
-class MaxOfAllSubArraysOfGivenSize {
+//Sliding Window Maximum
+class MaxOfAllSubArraysOfSizeK {
     /*-
     Given an array and an integer K, find the maximum for each and every contiguous sub-array of size K.
 
@@ -24,7 +25,7 @@ class MaxOfAllSubArraysOfGivenSize {
         int[] nums = {-7, -8, 7, 5, 7, 1, 6, 0};
         int k = 4;
 
-        MaxOfAllSubArraysOfGivenSize mask = new MaxOfAllSubArraysOfGivenSize();
+        MaxOfAllSubArraysOfSizeK mask = new MaxOfAllSubArraysOfSizeK();
 
         String res =
                 "The maximum for each and every contiguous sub-array of size " + k + "\n" +
