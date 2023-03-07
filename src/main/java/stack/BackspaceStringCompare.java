@@ -47,8 +47,8 @@ class BackspaceStringCompare {
     private boolean usingStack(String s, String t) {
         return processUsingStack(s)
                 .equals(processUsingStack(t));
-        //T(n) = O(n)
-        //S(n) = O(n)
+        // T(n) = O(m+n)
+        // S(n) = O(m+n)
     }
 
     private String processUsingStack(String input) {
@@ -68,8 +68,8 @@ class BackspaceStringCompare {
     private boolean using1Pointer(String s, String t) {
         return processUsing1Pointer(s)
                 .equals(processUsing1Pointer(t));
-        //T(n) = O(n)
-        //S(n) = O(1)
+        // T(n) = O(m+n)
+        // S(n) = O(1)
     }
 
     private String processUsing1Pointer(String input) {
