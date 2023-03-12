@@ -20,18 +20,15 @@ class BalancedParenthesisChecker {
 
         for (int i = 0; i < input.length(); i += 1) {
             char ic = input.charAt(i);
-            if (ic == '(' || ic == '{' || ic == '[')
+            if (ic == '(' || ic == '{' || ic == '[') {
                 stack.push(ic);
-            else {
-                if (stack.empty())
-                    return false;
-                char top = stack.peek();
-                if ((ic == ')' && top != '(') ||
-                        (ic == '}' && top != '{') ||
-                        (ic == ']' && top != '[')) {
-                    return false;
-                } else
-                    stack.pop();
+            } else if (stack.empty() ||
+                    (ic == ')' && stack.peek() != '(') ||
+                    (ic == '}' && stack.peek() != '{') ||
+                    (ic == ']' && stack.peek() != '[')) {
+                return false;
+            } else {
+                stack.pop();
             }
         }
 
