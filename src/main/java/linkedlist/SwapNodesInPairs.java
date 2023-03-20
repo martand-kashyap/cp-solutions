@@ -13,31 +13,46 @@ class SwapNodesInPairs {
 
         StringBuffer output = new StringBuffer();
         output.append("Before :\n");
-        output.append(LLHelper.print(head));
+        output.append(LinkedListHelper.displayList(head));
 
         SwapNodesInPairs snp = new SwapNodesInPairs();
         head = snp.swapPairsR(head);
 
         output.append("After :\n");
-        output.append(LLHelper.print(head));
+        output.append(LinkedListHelper.displayList(head));
 
         PrintWriter pw = new PrintWriter(System.out);
         pw.println(output);
         pw.close();
     }
 
-    private ListNode swapPairsR(ListNode head) {
-        if (head == null || head.next == null)
-            return head;
+    private ListNode swapPairsR(ListNode p1) {
+        if (p1 == null || p1.next == null)
+            return p1;
 
-        ListNode p2 = head.next;
+        ListNode p2 = p1.next;
         ListNode p3 = p2.next;
 
-        head.next = p3;
-        p2.next = head;
+        p1.next = p3;
+        p2.next = p1;
 
         if (p3 != null)
-            head.next = swapPairsR(p3);
+            p1.next = swapPairsR(p3);
+
+        return p2;
+    }
+
+    private ListNode swapPairsI(ListNode p1) {
+        if (p1 == null || p1.next == null)
+            return p1;
+
+        ListNode p2 = p1.next;
+        ListNode p3 = p2.next;
+
+
+        ListNode t = p1;
+        p1.next = p2;
+        p2.next = t;
 
         return p2;
     }

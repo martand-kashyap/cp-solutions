@@ -11,14 +11,14 @@ class ReverseLL {
 
         StringBuffer output = new StringBuffer();
         output.append("Before :\n");
-        output.append(LLHelper.print(head));
+        output.append(LinkedListHelper.displayList(head));
 
         ReverseLL rev = new ReverseLL();
         head = rev.reverseListR(head);
         //head = rev.reverseListI(head);
 
         output.append("After :\n");
-        output.append(LLHelper.print(head));
+        output.append(LinkedListHelper.displayList(head));
 
         PrintWriter pw = new PrintWriter(System.out);
         pw.println(output);
