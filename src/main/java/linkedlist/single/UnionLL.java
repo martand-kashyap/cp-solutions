@@ -1,4 +1,4 @@
-package linkedlist;
+package linkedlist.single;
 
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -6,16 +6,26 @@ import java.util.Collections;
 import java.util.List;
 
 class UnionLL {
+    /*
+    Given two linked lists, return the union of two linked lists.
+    This union should include all the distinct elements only.
+
+    Example 1:
+    Input:
+    L1 = 9->6->4->2->3->8
+    L2 = 1->2->8->6->2
+    Output: 1 2 3 4 6 8 9
+     */
     public static void main(String[] args) {
         int[] ll1Elements = {6, 6, 8, 4, 4, 4, 6, 2};
         int[] ll2Elements = {13, 5};
 
-        ListNode ll1Head = new ListNode(ll1Elements[0], null);
+        SingleLinkedListNode ll1Head = new SingleLinkedListNode(ll1Elements[0], null);
         for (int i = 1; i < ll1Elements.length; i++) {
             LinkedListHelper.insertLast(ll1Elements[i], ll1Head);
         }
 
-        ListNode ll2Head = new ListNode(ll2Elements[0], null);
+        SingleLinkedListNode ll2Head = new SingleLinkedListNode(ll2Elements[0], null);
         for (int i = 1; i < ll2Elements.length; i++) {
             LinkedListHelper.insertLast(ll2Elements[i], ll2Head);
         }
@@ -32,17 +42,17 @@ class UnionLL {
         pw.close();
     }
 
-    public ListNode findUnion(ListNode head1, ListNode head2) {
-        ListNode dummy = new ListNode();
+    public SingleLinkedListNode findUnion(SingleLinkedListNode head1, SingleLinkedListNode head2) {
+        SingleLinkedListNode dummy = new SingleLinkedListNode();
         List<Integer> s = new ArrayList<>();
-        ListNode r = dummy;
+        SingleLinkedListNode r = dummy;
 
-        for (ListNode i = head1; i != null; i = i.next) {
+        for (SingleLinkedListNode i = head1; i != null; i = i.next) {
             if (!s.contains(i.val))
                 s.add(i.val);
         }
 
-        for (ListNode i = head2; i != null; i = i.next) {
+        for (SingleLinkedListNode i = head2; i != null; i = i.next) {
             if (!s.contains(i.val))
                 s.add(i.val);
         }
@@ -50,7 +60,7 @@ class UnionLL {
         Collections.sort(s);
 
         for (int i = 0; i < s.size(); i++) {
-            r.next = new ListNode(s.get(i), null);
+            r.next = new SingleLinkedListNode(s.get(i), null);
             r = r.next;
         }
 

@@ -1,11 +1,11 @@
-package linkedlist;
+package linkedlist.single;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
 @AllArgsConstructor
-class ListNode {
+class SingleLinkedListNode {
     int val;
-    ListNode next;
+    SingleLinkedListNode next;
 }

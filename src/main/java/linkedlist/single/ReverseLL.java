@@ -1,12 +1,12 @@
-package linkedlist;
+package linkedlist.single;
 
 import java.io.PrintWriter;
 
 class ReverseLL {
     public static void main(String[] args) {
-        ListNode head = new ListNode(10, null);
-        head.next = new ListNode(20, null);
-        head.next.next = new ListNode(30, null);
+        SingleLinkedListNode head = new SingleLinkedListNode(10, null);
+        head.next = new SingleLinkedListNode(20, null);
+        head.next.next = new SingleLinkedListNode(30, null);
 
 
         StringBuffer output = new StringBuffer();
@@ -25,22 +25,22 @@ class ReverseLL {
         pw.close();
     }
 
-    private ListNode reverseListR(ListNode head) {
+    SingleLinkedListNode reverseListR(SingleLinkedListNode head) {
         if (head == null || head.next == null)
             return head;
 
-        ListNode smaller = reverseListR(head.next);
+        SingleLinkedListNode smaller = reverseListR(head.next);
         head.next.next = head;
         head.next = null;
 
         return smaller;
     }
 
-    private ListNode reverseListI(ListNode head) {
+    SingleLinkedListNode reverseListI(SingleLinkedListNode head) {
         if (head == null || head.next == null)
             return head;
 
-        ListNode prev = null, curr = head, next;
+        SingleLinkedListNode prev = null, curr = head, next;
         while (curr != null) {
             next = curr.next;
             curr.next = prev;
