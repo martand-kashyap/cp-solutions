@@ -36,23 +36,37 @@ class SwapNodesInGroupsOf2 {
         return p2;
     }
 
+    private SingleLinkedListNode swapPairsRAltImpl(SingleLinkedListNode head) {
+        if (head == null || head.next == null)
+            return head;
+
+        SingleLinkedListNode newHead = head.next;
+        SingleLinkedListNode remainingLL = head.next.next;
+
+        newHead.next = head;
+
+        head.next = swapPairsRAltImpl(remainingLL);
+
+        return newHead;
+    }
+
     private SingleLinkedListNode swapPairsI(SingleLinkedListNode head) {
         if (head == null || head.next == null)
             return head;
 
-        SingleLinkedListNode prev = null, curr = head, next = null;
+        SingleLinkedListNode dummy = new SingleLinkedListNode(-1, null);
+        dummy.next = head;
 
-        while (curr.next != null) {
-            next = curr.next;
-
-            curr.next = prev;
+        SingleLinkedListNode curr = head, prev = dummy;
+        while (curr != null && curr.next != null) {
+            prev.next = curr.next;
+            curr.next = prev.next.next;
+            prev.next.next = curr;
 
             prev = curr;
-            curr = next;
+            curr = curr.next;
         }
 
-        head = null;
-
-        return head;
+        return dummy.next;
     }
 }
