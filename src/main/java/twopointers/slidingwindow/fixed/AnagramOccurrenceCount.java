@@ -3,6 +3,7 @@ package twopointers.slidingwindow.fixed;
 import java.io.PrintWriter;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Map;
 
 public class AnagramOccurrenceCount {
     /*-
@@ -42,10 +43,22 @@ public class AnagramOccurrenceCount {
     private boolean isAnagram(String input, String pattern) {
         char[] a = input.toLowerCase().toCharArray(), b = pattern.toLowerCase().toCharArray();
 
-        Arrays.sort(a);
-        Arrays.sort(b);
+        Map<Character, Integer> alphabetCountMap = new HashMap<>();
 
-        return Arrays.equals(a, b);
+        for (char c : a) {
+            alphabetCountMap.put(c, alphabetCountMap.getOrDefault(c, 0) + 1);
+        }
+        for (char c : b) {
+            alphabetCountMap.put(c, alphabetCountMap.getOrDefault(c, 0) - 1);
+        }
+
+        for (int count : alphabetCountMap.values()) {
+            if (count != 0) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     private int solveSW(String input, String pattern) {
