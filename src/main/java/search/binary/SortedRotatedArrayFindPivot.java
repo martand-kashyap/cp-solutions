@@ -24,13 +24,12 @@ class SortedRotatedArrayFindPivot {
             int nextIdx = (midIdx + 1) % n;
 
             if (nums[prevIdx] >= nums[midIdx] && nums[midIdx] <= nums[nextIdx]) {
-                return nums[midIdx];
+                return midIdx;
             }
             //it is important to check if the right half is sorted or not before checking the left half
             else if (nums[midIdx] <= nums[right]) {
                 right = midIdx - 1;
             }
-            //
             else if (nums[left] <= nums[midIdx]) {
                 left = midIdx + 1;
             }
