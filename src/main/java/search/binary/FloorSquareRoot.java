@@ -26,10 +26,14 @@ class FloorSquareRoot {
 
             if (squareX == x) {
                 return (int) m;
-            } else if (squareX < x) {
+            }
+            //move closer to x, discard the left half
+            else if (squareX < x) {
                 res = m;
                 l = m + 1;
-            } else {
+            }
+            //move closer to x, discard the right half
+            else {
                 r = m - 1;
             }
         }
