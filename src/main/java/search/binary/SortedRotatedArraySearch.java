@@ -7,8 +7,8 @@ class SortedRotatedArraySearch {
         int[] arr = {4, 5, 6, 7, 0, 1, 2};
         int searchKey = 1;
 
-        SortedRotatedArraySearch obj = new SortedRotatedArraySearch();
-        String res = "Search Key found at index " + obj.searchInRotatedSortedArray(arr, searchKey);
+        SortedRotatedArraySearch problem = new SortedRotatedArraySearch();
+        String res = "Search Key found at index " + problem.solveInTwoPass(arr, searchKey);
 
         PrintWriter pw = new PrintWriter(System.out);
         pw.println(res);
@@ -16,7 +16,17 @@ class SortedRotatedArraySearch {
         pw.close();
     }
 
-    private int searchInRotatedSortedArray(int[] nums, int searchKey) {
+    private int bruteforce(int[] nums, int searchKey) {
+        for (int curr : nums) {
+            if (curr == searchKey) {
+                return curr;
+            }
+        }
+        //T(n) = O(n)
+        return -1;
+    }
+
+    private int solveInTwoPass(int[] nums, int searchKey) {
         int p = findPivotIndex(nums, nums.length);
 
         int idx1 = binarySearchI(nums, 0, p - 1, searchKey);
@@ -100,5 +110,6 @@ class SortedRotatedArraySearch {
             }
         }
         return -1;
+        //T(n) = O(log n)
     }
 }
