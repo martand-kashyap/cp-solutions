@@ -12,12 +12,41 @@ class TrappingRainwaterProblem {
         int[] arr = {0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1};
 
         TrappingRainwaterProblem trp = new TrappingRainwaterProblem();
-        String res = "Total trapped rainwater (DP approach): " + trp.usingDP(arr)
+        String res = "Total trapped rainwater (Bruteforce): " + trp.bruteforce(arr)
+                + "\nTotal trapped rainwater (DP approach): " + trp.usingDP(arr)
                 + "\nTotal trapped rainwater (2 pointer approach): " + trp.using2Pointers(arr);
 
         PrintWriter pw = new PrintWriter(System.out);
         pw.println(res);
         pw.close();
+    }
+
+    private long bruteforce(int[] heights) {
+        int n = heights.length;
+
+        // To store the maximum water that can be stored
+        int totalWaterTrapped = 0;
+
+        // For every element of the array
+        // except first and last element
+        for (int i = 1; i < n - 1; i++) {
+
+            // Find maximum element on its left
+            int leftMax = heights[i];
+            for (int j = 0; j < i; j++) {
+                leftMax = Math.max(leftMax, heights[j]);
+            }
+
+            // Find maximum element on its right
+            int rightMax = heights[i];
+            for (int j = i + 1; j < n; j++) {
+                rightMax = Math.max(rightMax, heights[j]);
+            }
+
+            // Update maximum water value
+            totalWaterTrapped += Math.min(leftMax, rightMax) - heights[i];
+        }
+        return totalWaterTrapped;
     }
 
     private long usingDP(int[] heights) {
