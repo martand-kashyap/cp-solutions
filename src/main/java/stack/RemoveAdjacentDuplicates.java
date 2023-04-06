@@ -3,7 +3,10 @@ package stack;
 import lombok.AllArgsConstructor;
 
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Stack;
+import java.util.stream.Collectors;
 
 class RemoveAdjacentDuplicates {
     /*-
@@ -31,7 +34,9 @@ class RemoveAdjacentDuplicates {
 
         String res = "After removing adjacent of pairs letters" + "\n" +
                 "from the input string: '" + inputString + "' \n\n" +
-                "using stack: " + problem.usingStack(inputString);
+                "using stack: " + problem.usingStack(inputString) + "\n" +
+                "using 2 pointer: " + problem.using2Pointer(inputString) + "\n" +
+                "using 2 pointer (optimized): " + problem.using2PointerOptimized(inputString);
 
         PrintWriter pw = new PrintWriter(System.out);
         pw.println(res);
@@ -39,7 +44,8 @@ class RemoveAdjacentDuplicates {
     }
 
     @AllArgsConstructor
-    static class CharacterCountPair {
+    private static class CharacterCountPair {
+
         char character;
         int count;
     }
@@ -74,5 +80,39 @@ class RemoveAdjacentDuplicates {
         }
 
         return String.valueOf(result);
+    }
+
+    private String using2Pointer(String inputString) {
+        List<Character> result = new ArrayList<>();
+        int j = -1;
+
+        for (char currentChar : inputString.toCharArray()) {
+            if (!result.isEmpty() && result.get(j) == currentChar) {
+                result.remove(j);
+                j--;
+            } else {
+                j++;
+                result.add(currentChar);
+            }
+        }
+
+        return result.stream().map(String::valueOf).collect(Collectors.joining());
+    }
+
+    private String using2PointerOptimized(String inputString) {
+//        int i = 0;
+//        char[] inputChars = inputString.toCharArray();
+//        StringBuilder result = new StringBuilder();
+//
+//        for (int j = 0; j < inputString.length(); j++, i++) {
+//            inputChars[i] = inputChars[j];
+//
+//            if (inputChars[i - 1] == inputChars[j]) {
+//                i -= 2;
+//            }
+//        }
+//
+//        return new String(inputChars, 0, j);
+        return "";
     }
 }

@@ -2,6 +2,7 @@ package twopointers.slidingwindow.fixed;
 
 import java.io.PrintWriter;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -12,7 +13,7 @@ class FirstNegativeInEveryWindowOfGivenSize {
 
         FirstNegativeInEveryWindowOfGivenSize fnnwk = new FirstNegativeInEveryWindowOfGivenSize();
 
-        String res = "First negative integer in every window of size " + k + "\n" +
+        String res = "First negative integer in every window of size '" + k + "'\n" +
                 "in the given array\n" + Arrays.toString(nums) + "\n\n" +
                 "Bruteforce T(n) = O(n*k) : " + Arrays.toString(fnnwk.solveB(nums, k)) + "\n" +
                 "Sliding Window T(n) = O(n) : " + Arrays.toString(fnnwk.solveSW(nums, k));

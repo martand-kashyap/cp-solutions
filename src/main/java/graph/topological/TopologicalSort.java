@@ -32,7 +32,8 @@ class TopologicalSort {
                 "Topographical Order of the DAG : " + "\n" +
                         graphRep + "\n" +
                         "DFS (recursive) T(n) = O(V+E), S(n) = O(V) : " + problem.topographicalSortUsingDFSR(graph, numOfVertices) + "\n" +
-                        "Kahn's Algorithm (iterative) T(n) = O(V+E), S(n) = O(E) : " + problem.kahnAlgorithm(graph, numOfVertices);
+                        "Kahn's Algorithm (iterative) T(n) = O(V+E), S(n) = O(E) : " + problem.kahnAlgorithm(graph, numOfVertices) + "\n" +
+                        "Departure Time of Vertex T(n) = O(V+E), S(n) = O(E) : " + problem.topographicalSortUsingDepartureTime(graph, numOfVertices);
 
         PrintWriter pw = new PrintWriter(System.out);
         pw.println(res);
@@ -98,5 +99,9 @@ class TopologicalSort {
         }
 
         return topographicalOrder.size() == numOfVertices ? topographicalOrder : null;
+    }
+
+    private List<Integer> topographicalSortUsingDepartureTime(MutableGraph<Integer> graph, int numOfVertices) {
+        return null;
     }
 }
