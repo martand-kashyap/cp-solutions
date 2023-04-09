@@ -2,7 +2,12 @@ package tree.binary.basics;
 
 import tree.binary.MyTreeNode;
 
-class IsomorphicTree {
+class IsIsomorphic {
+    /*-
+    2 Trees are isomorphic if either one holds true:-
+        1. Are the same tree.
+        2. Both are mirror of each other
+     */
     public static void main(String[] args) {
         /*-
             tree 1                  tree 2
@@ -50,7 +55,7 @@ class IsomorphicTree {
         boolean isDataSame = root1.val == root2.val;
 
         return isDataSame &&
-                ((isIsomorphic(root1.left, root2.left) && isIsomorphic(root1.right, root2.right)) ||
-                        (isIsomorphic(root1.left, root2.right) && isIsomorphic(root1.right, root2.left)));
+                ((isIsomorphic(root1.left, root2.left) && isIsomorphic(root1.right, root2.right)) || // is the same tree?
+                        (isIsomorphic(root1.left, root2.right) && isIsomorphic(root1.right, root2.left))); //is the mirror tree?
     }
 }
