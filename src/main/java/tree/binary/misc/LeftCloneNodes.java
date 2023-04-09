@@ -39,8 +39,7 @@ class LeftCloneNodes {
         System.out.println("preorder after : " + pre);
     }
 
-    @SuppressWarnings("unused")
-	private static MyTreeNode leftCloneNodes(MyTreeNode root) {
+    private static MyTreeNode leftCloneNodes(MyTreeNode root) {
         if (root == null)
             return null;
 
