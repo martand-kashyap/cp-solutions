@@ -1,4 +1,4 @@
-package tree.binary.bst;
+package tree.binary.basics;
 
 import tree.binary.MyTreeNode;
 
@@ -12,7 +12,7 @@ class HeightBalancePair {
     }
 }
 
-class IsTreeBalanced {
+class IsBalanced {
     public static void main(String[] args) {
 		/*-
 		  Sample tree
