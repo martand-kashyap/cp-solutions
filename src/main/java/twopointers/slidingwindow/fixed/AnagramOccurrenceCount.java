@@ -1,7 +1,6 @@
 package twopointers.slidingwindow.fixed;
 
 import java.io.PrintWriter;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -41,6 +40,10 @@ public class AnagramOccurrenceCount {
     }
 
     private boolean isAnagram(String input, String pattern) {
+        if (pattern.length() > input.length()) {
+            return isAnagram(pattern, input);
+        }
+
         char[] a = input.toLowerCase().toCharArray(), b = pattern.toLowerCase().toCharArray();
 
         Map<Character, Integer> alphabetCountMap = new HashMap<>();
