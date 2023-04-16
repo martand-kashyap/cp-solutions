@@ -4,16 +4,16 @@ import tree.binary.MyTreeNode;
 
 class PathNodeToRoot {
     public static void main(String[] args) {
-        /**
-         * Sample tree
-         *               15
-         *             /    \
-         *           10      20
-         *          /  \    /  \
-         *         8   12  16   25
-         *            /      \
-         *           7       90
-         */
+        /*-
+          Sample tree
+                        15
+                      /    \
+                    10      20
+                   /  \    /  \
+                  8   12  16   25
+                     /      \
+                    7       90
+        */
         MyTreeNode root = new MyTreeNode(15);
         root.left = new MyTreeNode(10);
         root.right = new MyTreeNode(20);
@@ -31,7 +31,7 @@ class PathNodeToRoot {
         int key = 90;
         nodeToRootPath(root, key, path);
 
-        System.out.println(path.toString());
+        System.out.println(path);
     }
 
     private static boolean nodeToRootPath(MyTreeNode root, int key, StringBuffer path) {
@@ -39,19 +39,19 @@ class PathNodeToRoot {
             return false;
 
         if (root.val == key) {
-            path.append(root.val + "<-");
+            path.append(root.val).append("<-");
             return true;
         }
 
         boolean l = nodeToRootPath(root.left, key, path);
         if (l) {
-            path.append(root.val + "<-");
+            path.append(root.val).append("<-");
             return true;
         }
 
         boolean r = nodeToRootPath(root.right, key, path);
         if (r) {
-            path.append(root.val + "<-");
+            path.append(root.val).append("<-");
             return true;
         }
 
