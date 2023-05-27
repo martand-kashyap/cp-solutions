@@ -14,7 +14,7 @@ class ThreadSafeLazySingleton implements Serializable, Cloneable {
 
     //handle serialization
     @Serial
-    private Object readResolve() {
+    protected Object readResolve() {
         return threadSafeLazySingletonInstance;
     }
 
