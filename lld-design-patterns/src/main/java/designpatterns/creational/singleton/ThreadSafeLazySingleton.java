@@ -24,7 +24,7 @@ class ThreadSafeLazySingleton implements Serializable, Cloneable {
         return threadSafeLazySingletonInstance;
     }
 
-    public static synchronized ThreadSafeLazySingleton getInstance() throws InstantiationException {
+    public static ThreadSafeLazySingleton getInstance() throws InstantiationException {
         if (threadSafeLazySingletonInstance == null) {
             synchronized (ThreadSafeLazySingleton.class) {
                 if (threadSafeLazySingletonInstance == null) {
