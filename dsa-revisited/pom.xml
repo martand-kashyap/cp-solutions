@@ -4,8 +4,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>cp-solutions</groupId>
-        <artifactId>cp-solutions</artifactId>
+        <groupId>java-katas</groupId>
+        <artifactId>java-katas</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
