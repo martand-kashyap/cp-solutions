@@ -1,4 +1,4 @@
-package twopointers.slidingwindow.fixed;
+package slidingwindow.fixed;
 
 import java.io.PrintWriter;
 import java.util.ArrayList;

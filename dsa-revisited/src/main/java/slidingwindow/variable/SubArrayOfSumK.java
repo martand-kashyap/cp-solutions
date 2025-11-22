@@ -1,4 +1,4 @@
-package twopointers.slidingwindow.variable;
+package slidingwindow.variable;
 
 class SubArrayOfSumK {
     /*-

@@ -1,4 +1,4 @@
-package twopointers.slidingwindow.variable;
+package slidingwindow.variable;
 
 import java.io.PrintWriter;
 import java.util.Arrays;

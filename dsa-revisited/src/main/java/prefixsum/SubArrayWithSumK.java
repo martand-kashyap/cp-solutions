@@ -1,0 +1,4 @@
+package prefixsum;
+
+class SubArrayWithSumK {
+}

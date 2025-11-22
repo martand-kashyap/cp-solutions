@@ -1,4 +1,4 @@
-package twopointers.prefixsum;
+package prefixsum;
 
 class LongestSubArrayWithSumK {
 }
